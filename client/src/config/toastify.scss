@@ -1,0 +1,26 @@
+.Toastify__toast-container {
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  .Toastify__toast.Toastify__toast--success {
+    color: #4caf50; /* Success background color */
+  }
+  
+  .Toastify__toast.Toastify__toast--error {
+color: #f44336; /* Error background color */
+  }
+  
+  .Toastify__toast-body {
+    font-size: 14px; /* Adjust font size as needed */
+   
+  }
+  
+  .Toastify__progress-bar {
+    background-color: #ffffff; /* Progress bar color */
+  }
+  .Toastify__close-button {
+    width: 0px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    font-size: 14px; /* Adjust font size as needed */
+    color: #ffffff; /* Button color */
+  }

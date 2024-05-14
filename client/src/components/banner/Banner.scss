@@ -1,0 +1,54 @@
+.banner {
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('https://vectorstate.com/stock-photo-preview/131554868/350/ist_26057_01254.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #8d0ba7;
+  padding: 100px 20px;
+  text-align: center;
+  overflow: hidden;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color:orange; /* Adjust the color as needed */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3; /* Adjust the hover color as needed */
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 80px 20px;
+
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      font-size: 20px;
+    }
+
+    .btn {
+      font-size: 16px;
+    }
+  }
+}

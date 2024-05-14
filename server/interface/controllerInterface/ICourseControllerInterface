@@ -1,0 +1,6 @@
+import { Request, Response } from "express";
+
+// Define the interface for the Auth Controller
+// export default interface ICourseControllerInterface {
+  
+// }
