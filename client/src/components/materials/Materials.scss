@@ -66,11 +66,12 @@
 
       .material-item {
 
-        margin-bottom: 10px;
+        margin-bottom:0px;
         width: 100%;
         border: 1px solid #ddd;
         border-radius: 4px;
         overflow: hidden;
+       
 
         .material-header {
           display: flex;
@@ -79,10 +80,14 @@
           color: $primary-color;
           font-size: small;
           font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+          margin-left: 5px;
+          margin-top: 7px;
           .dropdown-button-container {
             margin-left: auto;
+
+           
           }
+         
         }
       }
 
@@ -95,6 +100,11 @@
       .material-note h3,
       .material-video h3 {
         margin: 0 0 5px 0;
+      }
+      .headline{
+        font-size: 14px;
+        font-weight: lighter;
+        margin-left: 2px;
       }
     }
 

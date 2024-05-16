@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import './Community.scss'
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import Course from "../../interface/course/Course";
 import api from "../../axios/api";
 import ChatOnline from "../chatOnline/ChatOnline";
+import { Socket } from "socket.io-client";
 interface Conversation {
   _id: string;
   members: string[];
@@ -42,6 +44,7 @@ const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
     Friend[]
   >([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  const socket = useRef<Socket | null>(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const scrollRef = useRef();
   // const [currentChat, setCurrentChat] = useState(null);
@@ -67,7 +70,7 @@ const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
         );
         const students = studentDetails.map((res) => res.data.data);
         setSelectedCourseStudents(students);
-        console.log("Students:", students);
+     
       } catch (error) {
         // Handle errors, e.g., logging or displaying error messages
         throw new Error(`Error fetching course details for ID ${id}: ${error}`);

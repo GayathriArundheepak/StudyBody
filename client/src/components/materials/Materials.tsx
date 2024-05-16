@@ -100,7 +100,7 @@ const Materials: React.FC = () => {
                 <div className="dropdown-content">
                   {material.note && (
                     <div className="material-note">
-                      <h4>Notes of {material.note.headline}</h4>
+                      <h4 className="headline">Notes of {material.note.headline}</h4>
                       <button
                         className="material-button"
                         onClick={() => handleDownload(material.note!.url)}
@@ -111,7 +111,7 @@ const Materials: React.FC = () => {
                   )}
                   {material.video && (
                     <div className="material-video">
-                      <h4> Video of {material.video.headline}</h4>
+                      <h4 className="headline"> Video of {material.video.headline}</h4>
                       <button
                         className="material-button"
                         onClick={() => handleVideoSelect(material.video!.url)}

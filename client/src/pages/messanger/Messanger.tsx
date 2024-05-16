@@ -12,7 +12,7 @@ import {
 import { RootState } from "../../redux/store";
 import { useEffect, useRef, useState } from "react";
 import api from "../../axios/api";
-import Community from "../../components/community/community";
+import Community from "../../components/community/Community";
 import { io, Socket } from "socket.io-client";
 
 interface Conversation {
@@ -221,4 +221,5 @@ const Messanger: React.FC = () => {
     </div>
   );
 };
+
 export default Messanger;
