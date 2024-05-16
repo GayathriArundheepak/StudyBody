@@ -4,17 +4,19 @@ $error-color: #ff6347;
 
 /* Form container */
 .form {
- width: calc(100vw - 70px);
+  width: calc(100vw - 70px);
   margin: 0 auto;
   padding: 20px;
-  background-color:#b0abb4;
- 
+  background-color: #b0abb4;
+
 }
+
 label {
   margin-bottom: 5px; // Add some spacing below the label
-  color:#625f5f
+  color: #625f5f
 }
-.title{
+
+.title {
   width: calc(100vw - 300px);
 }
 
@@ -42,42 +44,48 @@ label {
   border-color: $primary-color;
 }
 
- .basic-info{
+.basic-info {
   width: calc(100vw - 350px);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:10px
- }
- .slot{
+  gap: 10px
+}
+
+.slot {
   width: calc(100vw - 350px);
   display: flex;
   justify-content: center;
-  gap:100px;
+  gap: 100px;
 
-  .select{
+  .select {
     margin-bottom: 14px;
   }
- }
- .finance{
+}
+
+.finance {
   width: calc(100vw - 350px);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap:10px
- }
- .discription{
+  gap: 10px
+}
+
+.discription {
   width: calc(100vw - 350px);
- }
+}
+
 // /* Error message */
 .error-message {
   color: $error-color;
   font-size: 14px;
   margin-top: 5px;
 }
-.btnSubmit{
+
+.btnSubmit {
   margin-right: 480px;
 }
+
 /* Button */
 .button {
   background-color: $primary-color;
@@ -102,6 +110,7 @@ label {
     transform: translateX(-100%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0);
     opacity: 1;
@@ -112,6 +121,7 @@ label {
 .form {
   animation: slideInFromLeft 0.5s ease-in-out;
 }
+
 .image-upload-container {
   display: flex;
   flex-direction: column;
@@ -136,6 +146,7 @@ label {
   opacity: 0;
   cursor: pointer;
 }
+
 // img {
 //   width: 70px;
 //   height: 70px; 

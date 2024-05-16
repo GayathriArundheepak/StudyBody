@@ -2,58 +2,58 @@
 // Mylearning.scss
 
 .my-learning-container {
-  margin:-20px ;
-   padding: 20px;
-  
+  margin: -20px;
+  padding: 20px;
 
 
-.my-learning-heading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-  color: $primary-color;
-  margin-top: 100px;
-  font-size: 24px;
-  margin-bottom: 20px;
-}
 
-.course-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+  .my-learning-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-.course-table th,
-.course-table td {
-  border: 1px solid #ccc;
-  padding: 12px;
-  text-align: left;
-}
+    color: $primary-color;
+    margin-top: 100px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
 
-.course-table th {
-  background-color: $primary-color;
-  color: $text-color;
-}
+  .course-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-.course-table td {
-  background-color: $background-color;
-}
+  .course-table th,
+  .course-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+  }
 
-.course-table tbody tr:hover {
-  background-color: #f0f0f0;
-}
+  .course-table th {
+    background-color: $primary-color;
+    color: $text-color;
+  }
 
-.course-table button {
-  padding: 8px 12px;
-  background-color: $button-background;
-  color: $button-color;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+  .course-table td {
+    background-color: $background-color;
+  }
 
-.course-table button:hover {
-  background-color: darken($button-background, 10%);
-}
+  .course-table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+
+  .course-table button {
+    padding: 8px 12px;
+    background-color: $button-background;
+    color: $button-color;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .course-table button:hover {
+    background-color: darken($button-background, 10%);
+  }
 }

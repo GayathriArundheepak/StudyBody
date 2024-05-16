@@ -1,14 +1,18 @@
-import './Conversation.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserStart, updateUserSuccess, UserSliceState } from '../../redux/user/UserSlice';
-import { RootState } from '../../redux/store';
-import { useEffect, useState } from 'react';
-import api  from '../../axios/api'
+import "./Conversation.scss";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateUserStart,
+  updateUserSuccess,
+  UserSliceState,
+} from "../../redux/user/UserSlice";
+import { RootState } from "../../redux/store";
+import { useEffect, useState } from "react";
+import api from "../../axios/api";
 
 interface IConversation {
   members: string[];
   conversationName?: string; // Make conversationName optional for group chats
-  isGroup :boolean
+  isGroup: boolean;
 }
 
 interface ConversationProps {
@@ -28,14 +32,19 @@ interface User {
 }
 
 const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
-  const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
-  const userType: string = useSelector((state: RootState) => state.user.userType) || 'student';
+  const { currentUser }: UserSliceState = useSelector(
+    (state: RootState) => state.user
+  );
+  const userType: string =
+    useSelector((state: RootState) => state.user.userType) || "student";
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const getUser = async () => {
       try {
-        const friendId = conversation.members.find((m) => m !== currentUser?._id);
+        const friendId = conversation.members.find(
+          (m) => m !== currentUser?._id
+        );
         if (friendId) {
           const res = await api.get(`/api/student/${friendId}`);
           setUser(res.data.data);
@@ -43,7 +52,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
       } catch (error) {
         console.log(error);
       }
-    }
+    };
     getUser();
   }, [currentUser, conversation]);
 
@@ -53,25 +62,25 @@ const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
     } else if (user) {
       return user.username; // Display friend's username for one-on-one chat
     } else {
-      return ''; // Handle loading state or error state
+      return ""; // Handle loading state or error state
     }
   };
 
   const renderProfilePic = () => {
     if (conversation.conversationName) {
       // Display group chat icon
-      return 'https://t3.ftcdn.net/jpg/07/14/57/10/360_F_714571052_6cbdJRbvbZVrqqJ9ujvPOMAfunjd92bH.jpg';
+      return "https://t3.ftcdn.net/jpg/07/14/57/10/360_F_714571052_6cbdJRbvbZVrqqJ9ujvPOMAfunjd92bH.jpg";
     } else if (user && user.profilePic) {
       return user.profilePic; // Display friend's profile picture for one-on-one chat
     } else {
-      return 'default-profile-pic-url'; // Display default profile picture for loading or error state
+      return "default-profile-pic-url"; // Display default profile picture for loading or error state
     }
   };
 
   return (
-    <div className='conversation'>
-      <img className='conversationImg' src={renderProfilePic()} alt="" />
-      <span className='conversationName'>{renderConversationName()}</span>
+    <div className="conversation">
+      <img className="conversationImg" src={renderProfilePic()} alt="" />
+      <span className="conversationName">{renderConversationName()}</span>
     </div>
   );
 };

@@ -1,6 +1,6 @@
-interface IOTP{
-    email:string,
-    otp?:string
+interface IOTP {
+  email: string;
+  otp?: string;
 }
 
 export default IOTP;

@@ -9,11 +9,11 @@ const messageUsecase = new MessageUsecase(messageRepository);
 const messageController = new MessageController(messageUsecase);
 
 messageRouter.post("/", (req: Request, res: Response) => {
-    messageController.addMessage(req, res);
+  messageController.addMessage(req, res);
 });
 
 messageRouter.get("/:conversationId", (req: Request, res: Response) => {
-    messageController.getMessagesByConversationId(req, res);
+  messageController.getMessagesByConversationId(req, res);
 });
 
 export default messageRouter;

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CurrentUser {
-  cart:string[];
-  wishlist:string[];
-  _id:string;
+  cart: string[];
+  wishlist: string[];
+  _id: string;
   profilePic?: string | null;
   username?: string;
   email: string;
@@ -12,13 +12,13 @@ export interface CurrentUser {
   gender?: string;
   date_of_birth?: Date;
   userType?: string;
-  mylearnings?:string[];
+  mylearnings?: string[];
 }
 
 // Define interface for user state
 export interface UserSliceState {
   data: any;
-  currentUser:  CurrentUser | null; // Include currentUser property
+  currentUser: CurrentUser | null; // Include currentUser property
   loading: boolean;
   error: boolean | string;
   userType?: string;
@@ -29,7 +29,7 @@ const initialState: UserSliceState = {
   currentUser: null,
   loading: false,
   error: false,
-  data: undefined
+  data: undefined,
 };
 
 // Define interface for sign in payload
@@ -40,7 +40,7 @@ interface SignInPayload {
 
 // Create user slice
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     signInStart: (state) => {
@@ -59,16 +59,16 @@ const userSlice = createSlice({
     updateUserStart: (state) => {
       state.loading = true;
     },
- 
+
     updateUserSuccess: (state, action: PayloadAction<any>) => {
       state.currentUser = {
         ...state.currentUser,
-        ...action.payload.data
+        ...action.payload.data,
       };
       state.loading = false;
       state.error = false;
     },
-    
+
     updateUserFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
@@ -87,7 +87,7 @@ const userSlice = createSlice({
     },
     signOut: (state) => {
       state.currentUser = null;
-      state.userType = '';
+      state.userType = "";
       state.loading = false;
       state.error = false;
     },

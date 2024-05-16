@@ -3062,6 +3062,11 @@
   resolved "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
+"@zegocloud/zego-uikit-prebuilt@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@zegocloud/zego-uikit-prebuilt/-/zego-uikit-prebuilt-2.1.0.tgz#890345bce13ed4eeac56db5d4b37f990b6cc0ae7"
+  integrity sha512-pJRUWu61AOKWo+NSTlT9ow/vT8MJeS4VEbJR94iDTHPERtcu7ApHbpO7M3FjmAamQSPOipR8+EQGTym6vn/F/Q==
+
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.6.tgz#41b80f2c871d19686216b82309231cfd3cb3d291"

@@ -1,5 +1,4 @@
-import mongoose from 'mongoose';
-
+import mongoose from "mongoose";
 
 interface ISlot {
   day: string[];
@@ -21,30 +20,28 @@ export interface IMaterials {
 //   name: string;
 // }
 
-
 // interface IClass{
 //   name:string;
 //   suject:ISubject;
 // }
 
 interface ICourseBody {
-  studentList:string[];
+  studentList: string[];
   syllabus: string;
- standard: string;
+  standard: string;
   subject: string;
   course_title: string;
   expairy?: Date;
   description: string;
-  
+
   //attendance?: ;
-  materials:IMaterial[];
+  materials: IMaterial[];
   // students_list: mongoose.Types.ObjectId[];
   commission?: number;
   prize: number;
   slots: ISlot;
   promotionVideo?: string;
-  adminApproved:boolean | null;
+  adminApproved: boolean | null;
 }
-
 
 export default ICourseBody;

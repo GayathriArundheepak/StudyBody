@@ -25,20 +25,25 @@ const addGroup = (groupId, socketId) => {
   // Check if a group with the same groupId exists
   const existingGroup = groups.find(group => group.groupId === groupId);
   
-  // If a group with the same groupId exists, add the socketId to its array
+  // If a group with the same groupId exists
   if (existingGroup) {
+    // Check if the socketId already exists in the existingGroup
+    if (!existingGroup.socketIds.includes(socketId)) {
+      // If socketId does not exist, push it into the socketIds array
       existingGroup.socketIds.push(socketId);
+    }
   } else {
-      // If the groupId is new, create a new group with the provided groupId and socketId
-      const newGroup = {
-          groupId: groupId,
-          socketIds: [socketId] // Use an array to store socketIds
-      };
-      groups.push(newGroup);
+    // If the groupId is new, create a new group with the provided groupId and socketId
+    const newGroup = {
+      groupId: groupId,
+      socketIds: [socketId] // Use an array to store socketIds
+    };
+    groups.push(newGroup);
   }
   
   console.log('groups:', groups);
 };
+
 
   const removeUser = (socketId) => {
     users = users.filter((user) => user.socketId !== socketId);
@@ -102,14 +107,20 @@ io.on("connection",(socket)=>{
         const group = getGroup(groupId);
         console.log('grp',group)
         if (group) {
+          // Remove the specific socket ID from the group's socket IDs
+          group.socketIds = group.socketIds.filter(id => id !== socket.id);
+        
+          // Emit the message to the remaining socket IDs
           group.socketIds.forEach(socketId => {
-              io.to(socketId).emit("getMessage", {
-                  senderId,
-                  text,
-              });
+            io.to(socketId).emit("getMessage", {
+              senderId,
+              text,
+            });
           });
-          console.log('getsMessage');
-      } else {
+        
+          console.log('getMessage');
+        }
+        else {
           console.log('Group not found');
       }
 
@@ -123,6 +134,5 @@ io.on("connection",(socket)=>{
           });
         }
       }
-    });
-    
+    });   
 })

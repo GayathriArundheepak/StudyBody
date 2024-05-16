@@ -1,201 +1,223 @@
 @import '../../config/color.scss';
 
- 
- .navbar{
-width:100%;
-height: 70px;
-padding-right: 5px;
-padding-left: 5px;
-background-color:$primary-color;
-color: $text-color;
-display: flex;
-align-items: center;
-justify-content:space-around;
-z-index: 999;
-position: fixed;
-      
-.profile-pic{
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  padding-right: 5px;
+  padding-left: 5px;
+  background-color: $primary-color;
+  color: $text-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 999;
+  position: fixed;
+
+  .profile-pic {
     width: 30px;
-    height: 30px; 
+    height: 30px;
     border-radius: 50%;
     cursor: 'pointer';
-}
-.sidebar-open{
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-color;
-}
-.sidebar-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-color;
-}
-.close-sidebar-button {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: $text-color;
-}
-.sidebar{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  left:250px;
-  height: 70px;
-  overflow: hidden;
-  .menuIcon {
-    position: fixed;
-    top: 10px;
-    right: 10px;
   }
-  
-}
-.link-container {
-      display: flex;
-      align-items: center;
-      gap:120px;
-      .nav-links {
-        text-decoration: none;
-        list-style: none;
-        display: flex;
-        gap: 30px;
-      }
-    }
-   ul{
-     list-style: none;
-    display: flex;
-     gap:150px;
-     li a{
-      text-decoration: none;
-      color: $text-color;
-     }
-  
- }
 
- .buttons{
-  margin-left: auto;
-  display: flex;
-  gap:20px;
-  
-  button{
-  height: 30px;    
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 6px 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
-  border-radius: 6px;
-  border: none;
-  color:$text-color;
-  background: linear-gradient(180deg, #673580 0%, $primary-color 100%);
-  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
- 
-  }
- }
-
- @media (max-width: 1060px) {
-  .searchbar {
-    position: relative;
-    left: 50px; /* Move 10px from the left */
-  }
-}
-
-@media (max-width: 1042px) {
-  .sidebar-toggle {
-    width:50px;
-    display: block;
+  .sidebar-open {
+    display: none;
+    background: none;
+    border: none;
     cursor: pointer;
     color: $text-color;
-    position: fixed; /* Position fixed for top-right placement */
-  top: 10px; /* Adjust as needed */
-  right: 10px; /* Adjust as needed */
-  }
-  .menuIcon {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-  }
-  
-  .sidebar-open{
-    display: block;
-  }
-.link-container {
-    display: none;
-   
   }
 
-  .sidebar-open{
+  .sidebar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-color;
+  }
+
+  .close-sidebar-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-color;
+  }
+
+  .sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 250px;
+    height: 70px;
+    overflow: hidden;
+
+    .menuIcon {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+  }
+
+  .link-container {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+
+    .nav-links {
+      text-decoration: none;
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+
+    li a {
+      text-decoration: none;
+      color: $text-color;
+    }
+
+  }
+
+  .buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+
+    button {
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 14px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+      border-radius: 6px;
+      border: none;
+      color: $text-color;
+      background: linear-gradient(180deg, #673580 0%, $primary-color 100%);
+      box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+
+    }
+  }
+
+  @media (max-width: 1060px) {
+    .searchbar {
+      position: relative;
+      left: 50px;
+      /* Move 10px from the left */
+    }
+  }
+
+  @media (max-width: 1042px) {
+    .sidebar-toggle {
+      width: 50px;
+      display: block;
+      cursor: pointer;
+      color: $text-color;
+      position: fixed;
+      /* Position fixed for top-right placement */
+      top: 10px;
+      /* Adjust as needed */
+      right: 10px;
+      /* Adjust as needed */
+    }
+
+    .menuIcon {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    .sidebar-open {
+      display: block;
+    }
 
     .link-container {
-      display: flex;
-      right: 0;
-      flex-direction: column;
-      align-items: flex-start;
-      position: fixed;
-      top:-35px;
-      left: 50%;
-      background-color: $primary-color;
-      width: 50%; // Adjust the width as needed
-      height: 800px;
-      padding-top: 70px;
-      transition: all 0.3s ease-in-out;
-      z-index: 10;
-      box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
-    .searchbar{
-      margin-top: 25px;
-        position: relative;
-        left: .1px; /* Initial position */
-      
+      display: none;
+
     }
-      .nav-links {
+
+    .sidebar-open {
+
+      .link-container {
+        display: flex;
+        right: 0;
         flex-direction: column;
-        margin-top: -100px;
-        gap: 10px;
-        padding: 0 20px;
-  
-        li {
-          width: 100%;
-  
-          a {
-            padding: 10px 0;
+        align-items: flex-start;
+        position: fixed;
+        top: -35px;
+        left: 50%;
+        background-color: $primary-color;
+        width: 50%; // Adjust the width as needed
+        height: 800px;
+        padding-top: 70px;
+        transition: all 0.3s ease-in-out;
+        z-index: 10;
+        box-shadow: -5px 0 5px rgba(0, 0, 0, 0.25);
+
+        .searchbar {
+          margin-top: 25px;
+          position: relative;
+          left: .1px;
+          /* Initial position */
+
+        }
+
+        .nav-links {
+          flex-direction: column;
+          margin-top: -100px;
+          gap: 10px;
+          padding: 0 20px;
+
+          li {
             width: 100%;
-            text-align: center;
+
+            a {
+              padding: 10px 0;
+              width: 100%;
+              text-align: center;
+            }
           }
         }
       }
+
     }
-  
+
+    .close-sidebar-button {
+      display: block;
+      background: black;
+      cursor: pointer;
+      color: $text-color;
+    }
+
+    #sidebar-active:checked~.links-container {
+      display: block;
+      right: 0;
+
+    }
+
+    #sidebar-active:checked~#overlay {
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9;
+    }
   }
 
- .close-sidebar-button {
-    display: block;
-    background: black;
-    cursor: pointer;
-    color: $text-color;
-  }
-  #sidebar-active:checked ~ .links-container{
-    display: block;
-    right: 0;
+  @media (max-width: 320px) {
+    .logo {
 
-  }
-  #sidebar-active:checked ~ #overlay{
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9;
+      font-size: 20px;
+      ;
+    }
   }
 }
-@media (max-width: 320px) {
-  .logo{
-  
-    font-size: 20px;; 
-  }
-}
- }

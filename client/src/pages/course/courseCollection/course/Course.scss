@@ -1,28 +1,9 @@
-// // Course.scss
-// .course-page {
-//   display: flex;
-//   flex-direction: column;
-//   height: 100vh; /* Set full height of the viewport */
-// }
-
-// .content-wrapper {
-//   flex-grow: 10; /* Allow the content to grow and occupy remaining space */
-//   display: flex;
-// }
-  
-//   /* Adjustments for Topbar and Navbar if necessary */
-  
-
 // Course.scss
 .course-page {
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* Set minimum height of the viewport */
 }
-
-// .navbar {
-//   /* Add styles for Navbar if necessary */
-// }
 
 .topbar {
   /* Add styles for Topbar */

@@ -1,39 +1,45 @@
-.message{
+.message {
     display: flex;
     flex-direction: column;
+
     &.own {
         align-items: flex-end;
 
-      }
-   
-    .messageTop{
+    }
+
+    .messageTop {
         display: flex;
-        .messageImg{
+
+        .messageImg {
             width: 32px;
             height: 32px;
             border-radius: 50%;
             object-fit: cover;
         }
-        .messageText{
+
+        .messageText {
             padding: 10px;
             border-radius: 20px;
             background-color: #1877f2;
             color: white;
             max-width: 300px;
         }
-        .username{
+
+        .username {
             // padding: 10px;
             // border-radius: 20px;
             color: rgb(231, 24, 24);
             // max-width: 150px;
         }
     }
+
     .messageBottom {
         font-size: 12px;
         margin-top: 10px;
-      }
+    }
 }
-.message.own .messageText{
+
+.message.own .messageText {
     background-color: rgb(245, 241, 241);
     color: black;
 }

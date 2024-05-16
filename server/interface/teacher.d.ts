@@ -1,4 +1,4 @@
-import  { ObjectId } from 'mongoose';
+import { ObjectId } from "mongoose";
 
 export interface ITeacher {
   _id: ObjectId;
@@ -16,7 +16,7 @@ export interface ITeacher {
   role: String | null;
   qualifications: String[] | null;
   phone_number: String | null;
-  
+  otpApproved: boolean;
 }
 
 export default ITeacher;

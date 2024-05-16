@@ -1,6 +1,6 @@
-import React from 'react';
-import './Cancel.scss';
-import ClearSharpIcon from '@mui/icons-material/ClearSharp';
+import React from "react";
+import "./Cancel.scss";
+import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 
 const Cancel: React.FC = () => {
   return (

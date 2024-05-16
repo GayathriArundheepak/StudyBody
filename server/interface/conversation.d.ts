@@ -1,6 +1,5 @@
-interface IConversation{
-    members:string[],
-      
+interface IConversation {
+  members: string[];
 }
 
 export default IConversation;

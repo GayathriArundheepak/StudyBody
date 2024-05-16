@@ -1,23 +1,25 @@
-import { useState } from 'react';
-import './SubjectsPage.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../redux/store';
-import Icons from '../../../../components/icons/Icons';
-import Course from '../../../../interface/course/Course'
-import VideoPreview from '../../../../components/videoPreview/VideoPreview';
-import { useNavigate } from 'react-router-dom';
-import Navbar from '../../../../components/navbar/Navbar';
-
+import { useState } from "react";
+import "./SubjectsPage.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../redux/store";
+import Icons from "../../../../components/icons/Icons";
+import Course from "../../../../interface/course/Course";
+import VideoPreview from "../../../../components/videoPreview/VideoPreview";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../../../../components/navbar/Navbar";
 
 function SubjectsPage(): JSX.Element {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const navigate = useNavigate();
-  const courses: Course[] = useSelector((state: RootState) => state.course.courses) as unknown as Course[]; // No need for type assertion
+  const courses: Course[] = useSelector(
+    (state: RootState) => state.course.courses
+  ) as unknown as Course[]; // No need for type assertion
   const handleRowClick = (index: number) => {
     const selectedIndex = selectedRows.indexOf(index);
-    const newSelectedRows = selectedIndex === -1
-      ? [...selectedRows, index]
-      : selectedRows.filter((rowIndex) => rowIndex !== index);
+    const newSelectedRows =
+      selectedIndex === -1
+        ? [...selectedRows, index]
+        : selectedRows.filter((rowIndex) => rowIndex !== index);
 
     setSelectedRows(newSelectedRows);
   };
@@ -28,11 +30,11 @@ function SubjectsPage(): JSX.Element {
 
   return (
     <>
-  {/* <p onClick={handleBack}>back</p> */}
-    <div className="subjects-page">
-  <Navbar/>
-      <div className="card-container">
-      <div className="card">
+      {/* <p onClick={handleBack}>back</p> */}
+      <div className="subjects-page">
+        <Navbar />
+        <div className="card-container">
+          <div className="card">
             <div className="card-header">
               <h3>Subject</h3>
               <h3>Teacher</h3>
@@ -45,41 +47,50 @@ function SubjectsPage(): JSX.Element {
               <h3>Actions</h3>
             </div>
           </div>
-        {courses && courses.map((course, index) => (
-          <div
-            key={index}
-            className={`card ${selectedRows.includes(index) ? 'selected-card' : ''}`}
-            onClick={() => handleRowClick(index)}
-          >
-            <div className="card-content">
-              <h3>{course.subject}</h3>
-              <p>{course.teacher_id}</p>
-              <p>{course.description}</p>
-              <p><strong>Price:</strong> {course.prize}</p>
-              {course.slot && (
-                <p>
-                   {course.slot.time || null} <br />
-                 {course.slot.day.join('-')}
-                </p>
-              )}
-              <p><strong>Available:</strong> {course.isAvailable ? 'YES' : 'NO'}</p>
-              <p><strong>Review:</strong>Reviews</p>
-              <div className="promotion_video">
-                {course.promotion_video && (
-                  <div className="video-preview">
-                    <VideoPreview videoUrl={course.promotion_video} />
+          {courses &&
+            courses.map((course, index) => (
+              <div
+                key={index}
+                className={`card ${
+                  selectedRows.includes(index) ? "selected-card" : ""
+                }`}
+                onClick={() => handleRowClick(index)}
+              >
+                <div className="card-content">
+                  <h3>{course.subject}</h3>
+                  <p>{course.teacher_id}</p>
+                  <p>{course.description}</p>
+                  <p>
+                    <strong>Price:</strong> {course.prize}
+                  </p>
+                  {course.slot && (
+                    <p>
+                      {course.slot.time || null} <br />
+                      {course.slot.day.join("-")}
+                    </p>
+                  )}
+                  <p>
+                    <strong>Available:</strong>{" "}
+                    {course.isAvailable ? "YES" : "NO"}
+                  </p>
+                  <p>
+                    <strong>Review:</strong>Reviews
+                  </p>
+                  <div className="promotion_video">
+                    {course.promotion_video && (
+                      <div className="video-preview">
+                        <VideoPreview videoUrl={course.promotion_video} />
+                      </div>
+                    )}
                   </div>
-                )}
+                  <div className="btn">
+                    <Icons courseId={course._id} />
+                  </div>
+                </div>
               </div>
-              <div className="btn">
-                <Icons courseId={course._id} />
-              </div>
-            </div>
-           
-          </div>
-        ))}
+            ))}
+        </div>
       </div>
-    </div>
     </>
   );
 }

@@ -1,16 +1,19 @@
-import React from 'react';
-import './Footer.scss';
+import React from "react";
+import "./Footer.scss";
 
 const Footer: React.FC = () => {
   return (
     <>
-      <div className='footer'>
+      <div className="footer">
         <div className="footerDescription">
           <h1>StudyBuddy</h1>
           <p>
-          StuddyBuddy is an innovative learning platform designed to empower students and educators worldwide.
-           With a focus on collaboration, engagement, and personalized learning experiences, StuddyBuddy provides a comprehensive suite of tools and resources to support academic success.
-         </p>
+            StuddyBuddy is an innovative learning platform designed to empower
+            students and educators worldwide. With a focus on collaboration,
+            engagement, and personalized learning experiences, StuddyBuddy
+            provides a comprehensive suite of tools and resources to support
+            academic success.
+          </p>
         </div>
         <div className="footerLinks">
           <h6>Quick Links</h6>
@@ -29,7 +32,7 @@ const Footer: React.FC = () => {
           <p>Links</p>
         </div>
       </div>
-      <div className='copyright'>
+      <div className="copyright">
         <p>Copyright © StudyBuddy Corporation 2024 All Rights Reserved</p>
         <div className="socialMediaIcons">
           {/* Add your social media icons here */}
@@ -37,6 +40,6 @@ const Footer: React.FC = () => {
       </div>
     </>
   );
-}
+};
 
 export default Footer;

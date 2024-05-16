@@ -1,36 +1,32 @@
-import mongoose, {ObjectId}  from "mongoose"; 
+import mongoose, { ObjectId } from "mongoose";
 
+interface IStudent {
+  _id: ObjectId;
 
-interface IStudent{
+  profilePic: string | null;
 
-    
-        _id: ObjectId;
+  wishlist: mongoose.Types.ObjectId[] | null;
 
-        profilePic: string | null;
+  username: string;
 
+  email: string;
 
-        wishlist: mongoose.Types.ObjectId[] | null;
+  cart: mongoose.Types.ObjectId[] | null;
 
-        username: string;
+  block: Boolean;
+  default: false;
 
-        email: string;
+  password: string;
 
-        cart:mongoose.Types.ObjectId[] | null;
+  review: string | null;
 
-        block: Boolean , default:false;
+  mylearnings: ObjectId[] | null;
 
-        password: string;
+  // Student_id: string;
+  gender: string[] | null;
 
-        review: string | null;
+  date_of_birth: Date | null;
 
-        mylearnings: ObjectId[] | null;
-
-        // Student_id: string;
-        gender: string[] | null;
-
-        date_of_birth: Date | null;
-        
-        otpApproved: boolean;
-      
+  otpApproved: boolean;
 }
 export default IStudent;

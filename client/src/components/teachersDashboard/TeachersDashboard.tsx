@@ -1,4 +1,5 @@
-import BarChartBox from '../chartBox/BarChartBox';
+import BarChartBox from '../barChartBox/BarChartBox';
+import LineChatBox from '../lineChartBox/LineChatBox';
 import PieAnimation from '../pieChartBox/PieChartBox';
 import PieChartBox from '../pieChartBox/PieChartBox';
 import TopBox from '../topBox/TopBox';
@@ -33,17 +34,7 @@ const TeachersDashboard =() => {
     </Stack>
       </div>
       
-      <LineChart
-      xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-      series={[
-        {
-          data: [2, 5.5, 2, 8.5, 1.5, 5],
-          area: true,
-        },
-      ]}
-      width={500}
-      height={300}
-    />
+     <LineChatBox/>
     </div>
   );
 }

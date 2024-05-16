@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
                       <Link to="/createCourseForm">Create Course</Link>
                     </li>
                     <li className="subMenuItem">
-                      <Link to="/UpdateCourse">Update Courses</Link>
+                      <Link to="/updateCourse">Update Courses</Link>
                     </li>
                   </>
                 )}
@@ -116,7 +116,9 @@ const Sidebar: React.FC = () => {
       { userType !== 'admin' && (
   <li className="sidebarListItem">
     <VideoChatSharpIcon style={{ color: '#4d2c5e' }} />
+    <Link to='/videoChat'>
     <span className="sidebarListItemText">Live Classes</span>
+    </Link>
   </li>
 )}
 
