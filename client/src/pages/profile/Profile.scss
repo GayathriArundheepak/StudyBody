@@ -1,0 +1,149 @@
+// Your main SASS file
+@import "../../config/color.scss"; // Import color variables
+
+.profile {
+  width: 100%;
+  height: calc(100vh - 0px);
+  background: linear-gradient(
+    to bottom,
+    rgba(214, 207, 207, 0) 0%,
+    rgb(240, 236, 236) 100%
+  );
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  .profile-right {
+    flex: 9;
+    position: absolute;
+    top: 70px;
+  }
+  .profile-container {
+    flex: 1;
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    position: absolute;
+    top: 70px;
+    left: 160px;
+
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      cursor: "pointer";
+    }
+    h1 {
+      color: $primary-color;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+
+      input {
+        width: 350px;
+        height: 55px;
+        background: $input-background;
+        border: 1px solid $input-border;
+        border-radius: 5px;
+      }
+
+      .innerbox {
+        width: 350px;
+        display: flex;
+        gap: 5px;
+
+        input {
+          width: 245px;
+          height: 40px;
+          background: $input-background;
+          border: 1px solid $input-border;
+          position: relative;
+        }
+
+        select {
+          width: 100%;
+          height: 40px;
+          padding: 10px;
+          font-size: 16px;
+          border-radius: 5px;
+          background-color: $select-background;
+          margin-top: 18px;
+
+          option {
+            background-color: $select-option-background;
+            color: $select-option-color;
+            font-size: 16px;
+            padding: 10px;
+          }
+
+          option:hover {
+            background-color: $select-option-hover-background;
+            cursor: pointer;
+          }
+
+          option[selected] {
+            background-color: $select-option-selected-background;
+            font-weight: bold;
+          }
+        }
+      }
+
+      textarea {
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        font-size: 13px;
+        border: 1px solid $textarea-border;
+        border-radius: 5px;
+        resize: none;
+      }
+
+      textarea:focus {
+        border-color: $textarea-focus-border;
+        outline: none;
+      }
+
+      p {
+        color: $error-color; // Changed to error color variable
+        margin-top: 20px;
+      }
+
+      button {
+        color: $button-color;
+        background-color: $button-background;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .profile-container {
+      width: calc(100vw - 50px); // Adjust width for smaller screens
+      left: 50%; // Adjust left position for smaller screens
+    }
+  }
+
+  @media (max-width: 600px) {
+    .bottom-profile {
+      position: absolute;
+      top: 90px;
+      left: 100px;
+    }
+    .profile-container {
+      display: none;
+    }
+  }
+}

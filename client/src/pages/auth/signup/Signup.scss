@@ -1,0 +1,175 @@
+@import '../../../config/color.scss';// Import color variables
+
+.signup {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(214, 207, 207, 0) 0%,
+        rgb(240, 236, 236) 100%
+    );
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        flex: 1;
+        width: 60%;
+        height: 400px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+
+        h1 {
+            color: #4d2c5e;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+
+            input {
+                width: 350px;
+                height: 55px;
+                background: #ffffff;
+                border: 1px solid #ffffff;
+                border-radius: 5px;
+            }
+
+            .innerbox {
+                width: 350px;
+                display: flex;
+                gap: 5px;
+
+                input {
+                    width: 245px;
+                    height: 40px;
+                    background: #ffffff;
+                    border: 1px solid #ffffff;
+                    position: relative;
+                }
+
+                select {
+                    width: 100%;
+                    height: 40px;
+                    padding: 10px;
+                    font-size: 16px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    background-color: #f8f8f8;
+                    appearance: none;
+
+                    option {
+                        background-color: #4d2c5e;
+                        color: #f9ebeb;
+                        font-size: 16px;
+                        padding: 10px;
+                    }
+
+                    option:hover {
+                        background-color: #f0f0f0;
+                        cursor: pointer;
+                    }
+
+                    option[selected] {
+                        background-color: #e0e0e0;
+                        font-weight: bold;
+                    }
+                }
+
+  
+
+  
+ 
+   
+            }
+        }
+        .role-selection{
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            gap:5px;
+            width: 10px;
+        }
+        p {
+            color:#4d2c5e;
+            margin-top: 20px;
+        }
+    
+        button {
+            color:#ffffff;
+            background-color:#4d2c5e;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+    @media (max-width: 380px) {
+      .container {
+        width:60%; // Adjust width for smaller screens
+      
+    
+      form {
+       
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    
+        input {
+          width: 250px;
+          height: 55px;
+          background: $background-color; // Use background color variable
+          border: 1px solid $background-color; // Use background color variable
+          border-radius: 5px;
+        }
+    
+        .role-selection {
+          display: flex;
+          align-items: center;
+          justify-content:center;
+          gap: 5px;
+          margin-top: -30px;
+          
+        }
+    
+        p {
+          color: $primary-color; // Use primary color variable
+          margin-top: 20px;
+          font-size: 14px; // Adjust font size for smaller screens
+        }
+    
+        button {
+          width:100px; // Make button width full width
+          color: #ffffff;
+          background-color: $primary-color; // Use primary color variable
+          border: none;
+          margin-top: -30px;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+        }
+      }
+    
+      h1 {
+        font-size: 24px; // Adjust heading font size for smaller screens
+      }
+  
+  #gender{
+    margin-left: 120px;
+   width:min-content
+  }
+}
+    }
+    
+    
+}
