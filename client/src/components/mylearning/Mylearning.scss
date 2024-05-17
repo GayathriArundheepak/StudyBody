@@ -4,9 +4,7 @@
 .my-learning-container {
   margin: -20px;
   padding: 20px;
-
-
-
+ 
   .my-learning-heading {
     display: flex;
     flex-direction: column;
@@ -20,8 +18,10 @@
   }
 
   .course-table {
-    width: 100%;
+    width: 80%;
+    margin-left: 100px;
     border-collapse: collapse;
+  
   }
 
   .course-table th,
@@ -56,4 +56,12 @@
   .course-table button:hover {
     background-color: darken($button-background, 10%);
   }
+  .footer-home{
+    background-color: #24262b;
+    position: absolute;
+    top: 630px;
+    left: 0;
+    right: 0;
+  }
+
 }

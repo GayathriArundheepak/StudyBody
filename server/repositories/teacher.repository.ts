@@ -160,8 +160,9 @@ const updatedPic =  await Teachers.findByIdAndUpdate({_id:id},{$set:{profilePic:
 
 async getTeacherById(id:string) {
   try {
-      const student = await Teachers.findById(id);
-      return student;
+      const teacher = await Teachers.findById(id);
+      console.log(teacher,id)
+      return teacher;
   } catch (error) {
       console.error('Error getting students:', error);
       throw new Error('Failed to get students');

@@ -69,7 +69,7 @@ function SubjectsPage(): JSX.Element {
               <h3>Price</h3>
               <h3>Slot</h3>
               <h3>Available</h3>
-              <h3>Review</h3>
+              {/* <h3>Review</h3> */}
               <h3>Promotion Video</h3>
               <h3>Actions</h3>
             </div>
@@ -100,9 +100,9 @@ function SubjectsPage(): JSX.Element {
                     <strong>Available:</strong>{" "}
                     {course.isAvailable ? "YES" : "NO"}
                   </p>
-                  <p>
+                  {/* <p>
                     <strong>Review:</strong>Reviews
-                  </p>
+                  </p> */}
                   <div className="promotion_video">
                     {course.promotion_video && (
                       <div className="video-preview">

@@ -9,8 +9,7 @@ const Footer: React.FC = () => {
           <h1>StudyBuddy</h1>
           <p>
             StuddyBuddy is an innovative learning platform designed to empower
-            students and educators worldwide. With a focus on collaboration,
-            engagement, and personalized learning experiences, StuddyBuddy
+            students and educators worldwide. personalized learning experiences, StuddyBuddy
             provides a comprehensive suite of tools and resources to support
             academic success.
           </p>

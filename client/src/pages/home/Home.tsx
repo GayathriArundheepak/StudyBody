@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./Home.scss";
@@ -15,6 +15,7 @@ function Home() {
   const { currentUser, loading } = useSelector((state: RootState) => state.user);
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
+
   return (
     <div className="home">
       <div className="top">
@@ -28,14 +29,13 @@ function Home() {
         <div className="middle-right">
           {userType === "student" && <StudentDashboard />}
           {userType === "teacher" && <TeachersDashboard />}
-          {/* <Banner/>
-      <About/> */}
+       
           {userType === "admin" && <AdminDashboard />}
         </div>
       </div>
-      {/* <div className="footer-home">
+      <div className=" footer-home">
         <Footer />
-      </div> */}
+      </div>
     </div>
   );
 }

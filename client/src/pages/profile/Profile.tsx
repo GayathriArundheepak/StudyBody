@@ -16,6 +16,7 @@ import ImageUpdate from "../../components/imageUpdate/ImageUpdate";
 import api from "../../axios/api";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
+import Footer from "../../components/footer/Footer";
 
 const Profile: React.FC = () => {
   const dispatch = useDispatch();
@@ -153,6 +154,9 @@ const Profile: React.FC = () => {
             )}
           </Formik>
         </div>
+        <div className="footer-home">
+        <Footer />
+      </div>
       </div>
     </>
   );

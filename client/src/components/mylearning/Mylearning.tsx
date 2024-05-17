@@ -6,6 +6,7 @@ import { RootState } from "../../redux/store";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import { useSelector } from "react-redux";
 import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 interface Course {
   standard: string;
@@ -89,6 +90,9 @@ const MyLearning: React.FC = () => {
             ))}
           </tbody>
         </table>
+      <div className=" footer-home">
+        <Footer />
+      </div>
       </div>
     </>
   );

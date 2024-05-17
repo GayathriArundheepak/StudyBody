@@ -18,6 +18,7 @@ import CourseResponse from "../../../interface/course/CourseResponse";
 import { Navigate, useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
+import VideoChatSharpIcon from '@mui/icons-material/VideoChatSharp';
 
 const TeacherCoursesPage: React.FC = () => {
   const navigate = useNavigate();
@@ -65,7 +66,6 @@ const TeacherCoursesPage: React.FC = () => {
     <>
       <Navbar />
       <div className="teacher-courses-page">
-        {/* <h1>My Courses</h1> */}
         <div className="teacher-middle-left">
           <Sidebar />
         </div>
@@ -103,6 +103,12 @@ const TeacherCoursesPage: React.FC = () => {
                       </Button>
                       <Button onClick={() => handleAddMaterials(course._id)}>
                         Add Materials
+                      </Button>
+                      <Button onClick={() => handleAddMaterials(course._id)}>
+                      <VideoChatSharpIcon style={{ color: '#4d2c5e' }} />
+                        <a href='/videoChat' target="_blank" rel="noopener noreferrer" className="sidebarListItemText">
+                            Make Live Class
+                        </a>
                       </Button>
                     </TableCell>
                   </TableRow>

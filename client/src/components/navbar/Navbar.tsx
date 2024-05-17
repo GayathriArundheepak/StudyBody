@@ -63,6 +63,14 @@ const Navbar: React.FC = () => {
       console.error("Error searching courses:", error);
     }
   };
+  const handleAboutClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate("/#about");
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div className={`navbar ${sidebarOpen ? "sidebar-open" : ""}`}>
       <h1 className="logo">StudyBuddy</h1>
@@ -92,9 +100,15 @@ const Navbar: React.FC = () => {
                 <Link to="/courses">Courses</Link>
               </li>
             )}
-            <li>
-              <Link to="/about">About</Link>
-            </li>
+
+            {userType !== "teacher" && userType !== "admin" && (
+              <li>
+                <a href="#about" onClick={handleAboutClick}>
+                  About
+                </a>
+              </li>
+            )}
+
             {isLoggedIn && userType === "student" && (
               <>
                 <li>

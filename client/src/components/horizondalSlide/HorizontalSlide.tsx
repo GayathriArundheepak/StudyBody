@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector
-import {
-  fetchCoursesStart,
-  fetchCoursesSuccess,
-} from "../../redux/course/CourseSlice"; // Import the fetchCoursesStart action
-
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import "./ClassList.scss";
-import { RootState } from "../../redux/store";
+import "./HorizontalSlide.scss";
+
+interface ClassItem {
+  standard: string;
+  description: string;
+}
+
+interface ClassListProps {
+  selectedSyllabus: string;
+}
 
 enum ClassStandard {
   FIRST_STANDARD = "1",
@@ -25,40 +26,31 @@ enum ClassStandard {
   TWELFTH_STANDARD = "12",
 }
 
-interface ClassListProps {
-  selectedSyllabus: string;
-}
-
-const ClassList: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+const HorizontalSlide: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const classListRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const courses = useSelector((state: RootState) => state.course.courses);
-  const handleClickSubjects = (standard: ClassStandard) => {
-    setLoading(true);
-    dispatch(fetchCoursesStart());
-    axios
-      .post("http://localhost:8080/api/course/coursesList", {
-        syllabus: selectedSyllabus,
-        standard: standard,
-      })
-      .then((response) => {
-        console.log("Subjects:", response.data); // Handle the response data as needed
-        try {
-          dispatch(fetchCoursesSuccess(response.data));
-          navigate("/subjects");
-        } catch (error) {
-          console.log(error);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching subjects:", error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+  const [startIndex, setStartIndex] = useState(0);
+  const cardWidth = 300; // Width of each card
+
+
+
+
+  const handleScrollRight = () => {
+    if (classListRef.current) {
+      const newIndex = startIndex + 1;
+      setScrollLeft(newIndex * -cardWidth);
+      setStartIndex(newIndex);
+    }
   };
 
+  const handleScrollLeft = () => {
+    if (classListRef.current && startIndex > 0) {
+      const newIndex = startIndex - 1;
+      setScrollLeft(newIndex * -cardWidth);
+      setStartIndex(newIndex);
+    }
+  };
   const classes: { standard: ClassStandard; description: string }[] = [
     {
       standard: ClassStandard.FIRST_STANDARD,
@@ -123,31 +115,35 @@ const ClassList: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
   ];
 
   return (
-    <div className="class-list">
-      <h2>Classes for {selectedSyllabus}</h2>
-      <div className="rows">
-        {classes.map((classItem, index) => (
-          <div key={index} className="card">
-            <div className="previewImage">
-              <img src="/images/previewImage.jpg" alt="" />
+    <div className="horizontal-slide-container">
+      <button className="scroll-button" onClick={handleScrollLeft} disabled={startIndex === 0}>
+        &lt;
+      </button>
+      <div className="horizontal-slide" ref={classListRef}>
+        <div className="slides" style={{ transform: `translateX(${scrollLeft}px)` }}>
+          {classes.map((classItem, index) => (
+            <div key={index} className="slide">
+              <div className="preview-image">
+                <img src="/images/previewImage.jpg" alt="Preview" />
+              </div>
+              <div className="class-details">
+                <h3>
+                  {classItem.standard} ({selectedSyllabus})
+                </h3>
+                <p>{classItem.description}</p>
+                <button className="action-button" disabled={loading}>
+                  {loading ? "Loading..." : "Subjects"}
+                </button>
+              </div>
             </div>
-            <div className="class-details">
-              <h3>
-                {classItem.standard}({selectedSyllabus})
-              </h3>
-              <p>{classItem.description}</p>
-              <button
-                className="btn"
-                onClick={() => handleClickSubjects(classItem.standard)}
-                disabled={loading}
-              >
-                {loading ? "Loading..." : "Subjects"}
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+      <button className="scroll-button" onClick={handleScrollRight}>
+        &gt;
+      </button>
     </div>
   );
 };
-export default ClassList;
+
+export default HorizontalSlide;

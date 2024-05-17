@@ -52,12 +52,13 @@ class TeacherController implements ITeacherControllerInterface{
         
         }
             }   
+
             
             async getTeacherById(req: Request, res: Response): Promise<void> {
                 try {
                   const teacherId: string = req.params.id; // Assuming the teacher ID is provided as a route parameter
                   const response = await this.teacherUsecase.getTeacherById(teacherId);
-            
+            console.log('teacher')
                   const statusCode = response.success ? HttpStatus.success : HttpStatus.NotFound;
                   res.status(statusCode).send({
                     success: response.success,
