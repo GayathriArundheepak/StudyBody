@@ -51,36 +51,24 @@ class TeacherController implements ITeacherControllerInterface{
             errorHandler(error, res);
         
         }
-            }    
-
-            // async teacherProfilePicUpload(req : Request , res : Response)   {
-            //     try{
-            //         if (!req.file) {
-            //             return res.status(HttpStatus.BadRequest).send({
-            //                 success: false,
-            //                 message: 'No file received'
-            //             });
-            //         }
-            //         const file: Express.Multer.File = req.file
-
-            //         const id:string=req.params._id;
-            //         console.log(id)
-            //         const response= await this.teacherUsecase.teacherProfilePicUpload(file,id);
-            //         const statusCode =response?.success? HttpStatus.success:HttpStatus.NotFound
-        
-            //         res.status(statusCode).send({
-            //             success:response?.success,
-            //             message:response?.message,
-                      
-            //         })
-            //     }catch(error){
-            //         console.log(error)
-            //         res.status(HttpStatus.ServerError).send({
-            //          success:false,
-            //          message:"Server error"
-            //         })
-            //     }
-            // } 
+            }   
+            
+            async getTeacherById(req: Request, res: Response): Promise<void> {
+                try {
+                  const teacherId: string = req.params.id; // Assuming the teacher ID is provided as a route parameter
+                  const response = await this.teacherUsecase.getTeacherById(teacherId);
+            
+                  const statusCode = response.success ? HttpStatus.success : HttpStatus.NotFound;
+                  res.status(statusCode).send({
+                    success: response.success,
+                    message: response.message,
+                    data: response.data,
+                  });
+                } catch (error) {
+                  errorHandler(error, res);
+                }
+              }
+ 
 }
 
 export default TeacherController

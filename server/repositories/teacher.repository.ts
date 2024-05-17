@@ -157,6 +157,16 @@ const updatedPic =  await Teachers.findByIdAndUpdate({_id:id},{$set:{profilePic:
     throw new Error(`Failed to update profile pic : ${error}`);
   }
 }
+
+async getTeacherById(id:string) {
+  try {
+      const student = await Teachers.findById(id);
+      return student;
+  } catch (error) {
+      console.error('Error getting students:', error);
+      throw new Error('Failed to get students');
+  }
+}
 }
 
 export default TeacherRepository;

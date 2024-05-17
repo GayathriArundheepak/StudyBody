@@ -25,15 +25,7 @@ class TeacherUsecase implements ITeacherUsecaseInterface  {
            if(teacherExist){
                      const   password=body.password
 
-                //      const hashedPassword:string = await  bcrypt.hash(password as string, 10);
-                //   const updateBody:ITeacherBody={...body,password:hashedPassword}
-                //   await this.teacherRepository.teacherProfileUpdeate(updateBody,id);
-                  
-                //             return {
-                //         success:true,
-                //         message:"profile updated",
-                       
-                //         }
+            
                 if(password){
 
                     const hashedPassword:string = await  bcrypt.hash(password as string, 10);
@@ -103,9 +95,34 @@ class TeacherUsecase implements ITeacherUsecaseInterface  {
                     success: false,
                     message: ' teachersDetails  not found'
                 };
-                // throw new Error('Failed to get teacher');
+             
             }
         }
+
+        async getTeacherById(id: string) {
+            try {
+              const teacher = await this.teacherRepository.getTeacherById(id);
+              if (teacher) {
+                return {
+                  success: true,
+                  message: 'Teacher found',
+                  data: teacher
+                };
+              } else {
+                return {
+                  success: false,
+                  message: 'Teacher not found'
+                };
+              }
+            } catch (error) {
+              console.error('Error getting Teacher:', error);
+              return {
+                success: false,
+                message: 'Failed to get Teacher'
+              };
+            }
+          }
+
 
 }
 export default TeacherUsecase;

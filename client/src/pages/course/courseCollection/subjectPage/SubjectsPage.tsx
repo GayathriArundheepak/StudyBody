@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SubjectsPage.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
@@ -7,13 +7,43 @@ import Course from "../../../../interface/course/Course";
 import VideoPreview from "../../../../components/videoPreview/VideoPreview";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../../components/navbar/Navbar";
+import api from '../../../../axios/api';
+
 
 function SubjectsPage(): JSX.Element {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
+  const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>({});
   const navigate = useNavigate();
   const courses: Course[] = useSelector(
     (state: RootState) => state.course.courses
   ) as unknown as Course[]; // No need for type assertion
+  const fetchTeacherName = async (teacherId: string) => {
+    if (teacherNames[teacherId]) {
+      return; // Already fetched
+    }
+    try {
+      const response = await api.get(`/api/teacher/${teacherId}`);
+      setTeacherNames(prevState => ({
+        ...prevState,
+        [teacherId]: response.data.data.username,
+      }));
+    } catch (error) {
+      console.error(`Error fetching teacher with id ${teacherId}:`, error);
+      setTeacherNames(prevState => ({
+        ...prevState,
+        [teacherId]: "Unknown",
+      }));
+    }
+  };
+
+  useEffect(() => {
+    courses.forEach(course => {
+      if (course.teacher_id) {
+        fetchTeacherName(course.teacher_id);
+      }
+    });
+  }, [courses]);
+
   const handleRowClick = (index: number) => {
     const selectedIndex = selectedRows.indexOf(index);
     const newSelectedRows =
@@ -23,14 +53,11 @@ function SubjectsPage(): JSX.Element {
 
     setSelectedRows(newSelectedRows);
   };
-  const handleBack = () => {
-    // Use navigate with -1 to go back to the previous page
-    navigate(-1);
-  };
+ 
 
   return (
     <>
-      {/* <p onClick={handleBack}>back</p> */}
+ 
       <div className="subjects-page">
         <Navbar />
         <div className="card-container">
@@ -58,7 +85,7 @@ function SubjectsPage(): JSX.Element {
               >
                 <div className="card-content">
                   <h3>{course.subject}</h3>
-                  <p>{course.teacher_id}</p>
+                  <p>{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</p>
                   <p>{course.description}</p>
                   <p>
                     <strong>Price:</strong> {course.prize}

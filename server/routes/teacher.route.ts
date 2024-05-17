@@ -14,7 +14,8 @@ const teacherController= new TeacherController(teacherUsecase)
 
 teacherRouter.get('/teachersList', (req:Request, res:Response)=>{teacherController.getTeachers(req,res)});
 
-teacherRouter.put('/updateProfile/:_id',verifyToken,checkTeacherBlocked,(req:Request, res:Response)=>{teacherController.teacherProfileUpdeate(req,res)})
+teacherRouter.put('/updateProfile/:_id',verifyToken,checkTeacherBlocked,(req:Request, res:Response)=>{teacherController.teacherProfileUpdeate(req,res)});
+teacherRouter.get('/:id', (req:Request, res:Response)=>{teacherController.getTeacherById(req,res)});
 
 
 export default teacherRouter;
