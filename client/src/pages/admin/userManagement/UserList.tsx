@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import api from "../../../axios/api";
 import "./UserList.scss"; // Import the shared Sass file
 import { useNavigate } from "react-router-dom";
@@ -57,8 +56,8 @@ function UserList({ userType }: UserListProps) {
 
   const onBlock = async (id: string) => {
     try {
-      await axios.put(
-        `http://localhost:8080/api/admin/block-user/${userType}/${id}`
+      await api.put(
+        `/api/admin/block-user/${userType}/${id}`
       );
       const updatedUsers = users.map((user) => {
         if (user._id === id) {
@@ -74,7 +73,7 @@ function UserList({ userType }: UserListProps) {
 
   const onAdminApprove = async (id: string) => {
     try {
-      await axios.put(`http://localhost:8080/api/admin/approve-teacher/${id}`);
+      await api.put(`/api/admin/approve-teacher/${id}`);
       const updatedUsers = users.map((user) => {
         if (user._id === id) {
           return { ...user, adminApproved: true };
@@ -89,8 +88,8 @@ function UserList({ userType }: UserListProps) {
 
   const onUnblock = async (id: string) => {
     try {
-      await axios.put(
-        `http://localhost:8080/api/admin/unblock-user/${userType}/${id}`
+      await api.put(
+        `/api/admin/unblock-user/${userType}/${id}`
       );
 
       const updatedUsers = users.map((user) => {
@@ -107,8 +106,8 @@ function UserList({ userType }: UserListProps) {
 
   const onDisapprovalApproval = async (id: string) => {
     try {
-      await axios.put(
-        `http://localhost:8080/api/admin/disApprove-teacher/${id}`
+      await api.put(
+        `/api/admin/disApprove-teacher/${id}`
       );
       const updatedUsers = users.map((user) => {
         if (user._id === id) {

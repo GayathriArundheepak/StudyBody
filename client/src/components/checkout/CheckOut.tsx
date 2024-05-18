@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./CheckOut.scss";
-import axios from "axios";
+import api from '../../axios/api';
 import { useMatch, useNavigate, useParams } from "react-router-dom";
 import makePayment from "../paymentComponent/MakePayment";
 import Course from "../../interface/course/Course";
@@ -20,8 +20,8 @@ const Checkout: React.FC = () => {
     const fetchCartItems = async () => {
       try {
         if (currentUser && currentUser._id) {
-          const response = await axios.get(
-            `http://localhost:8080/api/cart/get-cart/${currentUser._id}`
+          const response = await api.get(
+            `/api/cart/get-cart/${currentUser._id}`
           );
           setCartItems(response.data.cart);
         } else {

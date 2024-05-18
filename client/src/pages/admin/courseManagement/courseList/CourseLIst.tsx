@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./CourseList.scss";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../../../axios/api";
 import { FormikProps } from "formik";
@@ -34,8 +33,8 @@ function CourseList() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:8080/api/course/coursesList",
+        const response = await api.post(
+          "/api/course/coursesList",
           {
             syllabus: selectedSyllabus,
             standard: selectedStandard,
@@ -85,7 +84,7 @@ function CourseList() {
 
   const onAdminApprove = async (id: string) => {
     try {
-      await axios.put(`http://localhost:8080/api/course/approve-course/${id}`);
+      await api.put(`/api/course/approve-course/${id}`);
       const updatedCourses = courses.map((course) => {
         if (course._id === id) {
           return { ...course, adminApproved: true };
@@ -100,8 +99,8 @@ function CourseList() {
 
   const onDisapprovalApproval = async (id: string) => {
     try {
-      await axios.put(
-        `http://localhost:8080/api/course/disApprove-course/${id}`
+      await api.put(
+        `/api/course/disApprove-course/${id}`
       );
       const updatedCourses = courses.map((course) => {
         if (course._id === id) {

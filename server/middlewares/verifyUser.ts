@@ -8,15 +8,14 @@ const jwtAuthService = new JwtAuthService(JWT_SECRET);
 declare global {
     namespace Express {
         interface Request {
-            user?:string; // Adjust the type according to your decoded token structure
+            user?: any; // Adjust the type according to your decoded token structure
         }
     }
 }
-
 export const verifyToken =(req:Request,res:Response,next:NextFunction)=>{
   
-    // console.log(`cookies ${req.cookies}`)
     const token=req.cookies.access_token;
+    console.log(token)
     if(!token){
         return res.status(HttpStatus.Unauthorized).json({message:'You are not authenticated!'})
 
@@ -31,3 +30,4 @@ export const verifyToken =(req:Request,res:Response,next:NextFunction)=>{
         return res.status(HttpStatus.Unauthorized).json({ message: 'Invalid token!' });
     }
 }
+//  console.log(`cookies ${req.cookies}`)

@@ -40,6 +40,7 @@ import AddSubject from "./pages/admin/courseManagement/addSubject/AddSubject";
 import Messanger from "./pages/messanger/Messanger";
 import VideoChat from "./pages/videoChat/VideoChat";
 import EditCourse from "./pages/course/editCourse/EditCourse";
+import NotFound from "./components/notFound/NotFound";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-
+          <Route path="*" element={<NotFound />} />
           <Route path="/courses" element={<Course />} />
           <Route path="/subjects" element={<SubjectPage />} />
           <Route path="/messanger" element={<Messanger />} />

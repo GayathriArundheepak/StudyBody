@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/store';
 import { signOut } from '../../redux/user/UserSlice';
-
+import api from '../../axios/api';
 interface SignOutProps {}
 
 const SignOut: React.FC<SignOutProps> = () => {
@@ -16,7 +16,7 @@ const SignOut: React.FC<SignOutProps> = () => {
   console.log(userType)
   const handleSignOut = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/auth/signout', { withCredentials: true });
+      const response = await api.get('/api/auth/signout', { withCredentials: true });
       console.log('response', response.data);
       if (response.data.success) {
         dispatch(signOut());

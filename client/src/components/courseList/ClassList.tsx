@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import "./ClassList.scss";
 import { RootState } from "../../redux/store";
+import api from '../../axios/api'
 
 enum ClassStandard {
   FIRST_STANDARD = "1",
@@ -37,8 +38,8 @@ const ClassList: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
   const handleClickSubjects = (standard: ClassStandard) => {
     setLoading(true);
     dispatch(fetchCoursesStart());
-    axios
-      .post("http://localhost:8080/api/course/coursesList", {
+    api
+      .post("/api/course/coursesList", {
         syllabus: selectedSyllabus,
         standard: standard,
       })

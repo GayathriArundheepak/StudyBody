@@ -166,9 +166,9 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({ courseId }) => {
 
           // Set promotion_video field value
           values = { ...values, promotion_video: videoUrl };
-          axios
+          api
             .put(
-              `http://localhost:8080/api/course/update-course/${id}/${courseId}`,
+              `/api/course/update-course/${id}/${courseId}`,
               values
             )
             .then((response) => {

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './Wishlist.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import axios from 'axios';
+import api from '../../axios/api';
 import { UserSliceState } from '../../redux/user/UserSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
@@ -38,7 +38,7 @@ function Wishlist(): JSX.Element {
     const fetchWishlistCourses = async () => {
       try {
         if (currentUser && currentUser._id) {
-            axios.get(`http://localhost:8080/api/wishlist/get-wishlist/${currentUser._id}`)
+           api.get(`/api/wishlist/get-wishlist/${currentUser._id}`)
             .then(response => {
               console.log(response.data);
               setWishlistCourses(response.data.wishlist);
@@ -77,8 +77,8 @@ function Wishlist(): JSX.Element {
     if(currentUser){
         const studentId=currentUser._id;
 
-        // Make an Axios call to the API to remove the item from the wishlist
-        axios.delete(`http://localhost:8080/api/wishlist/remove-wishlist/${studentId}/${courseId}`)
+        // Make anapi call to the API to remove the item from the wishlist
+       api.delete(`/api/wishlist/remove-wishlist/${studentId}/${courseId}`)
           .then(response => {
             console.log('Item removed from wishlist:', response.data);
             setWishlistCourses(prevCourses => prevCourses.filter(course => course._id !== courseId));

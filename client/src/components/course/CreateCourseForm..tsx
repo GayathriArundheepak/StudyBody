@@ -141,9 +141,9 @@ const CreateCourseForm: React.FC = () => {
 
           // Set promotion_video field value
           values = { ...values, promotion_video: videoUrl };
-          axios
+          api
             .post(
-              `http://localhost:8080/api/course/create-course/${id}`,
+              `/api/course/create-course/${id}`,
               values
             )
             .then((response) => {

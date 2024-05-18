@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import './Success.scss';
 import CheckSharpIcon from '@mui/icons-material/CheckSharp';
-import axios from 'axios';
+import api from '../../axios/api';
 import { Link, useMatch, useParams } from 'react-router-dom';
 
 
@@ -13,8 +13,8 @@ const Success: React.FC= () => {
   const { orderId } = useParams<{ orderId: string }>();
   const match = useMatch('/successd/:orderId');
   const updateCourseStudentsList = (courseId:string, studentId:string) => { // Accept courseId and studentId as parameters
-    return axios
-      .post('http://localhost:8080/api/course/update-course-students-list', { courseId, studentId }) // Pass courseId and studentId in the request body
+    return api
+      .post('api/course/update-course-students-list', { courseId, studentId }) // Pass courseId and studentId in the request body
       .then(response => {
         console.log('Course students list updated successfully:', response.data);
         return response.data; // You can return the data if needed
@@ -27,8 +27,8 @@ const Success: React.FC= () => {
   // Define the function to update student's mylearning
 const updateStudentsMylearning = (studentId: string, courseId: string) => {
   // Make a POST request to the corresponding endpoint
-  return axios
-    .post('http://localhost:8080/api/student/update-students-mylearning', {studentId,courseId })
+  return api
+    .post('api/student/update-students-mylearning', {studentId,courseId })
     .then(response => {
       console.log('Student mylearning updated successfully:', response.data);
       return response.data; // You can return the data if needed
@@ -41,8 +41,8 @@ const updateStudentsMylearning = (studentId: string, courseId: string) => {
 
 const clearCart = (studentId:string) => {
   // Make a POST request to the corresponding endpoint
-  return axios
-    .post('http://localhost:8080/api/cart/clear-cart/' + studentId)
+  return api
+    .post('api/cart/clear-cart/' + studentId)
     .then(response => {
       console.log('Cart cleared successfully:', response.data);
       return response.data; // You can return the data if needed
@@ -54,8 +54,8 @@ const clearCart = (studentId:string) => {
 };
   useEffect(() => {
     const updateOrderPaymentStatus = () => {
-      return axios
-        .post('http://localhost:8080/api/order/update-order-payment-status', { orderId })
+      return api
+        .post('api/order/update-order-payment-status', { orderId })
         .then(async response => {
           console.log('Order payment status updated successfully:', response.data);
           const courseId = response.data.data.courseId;

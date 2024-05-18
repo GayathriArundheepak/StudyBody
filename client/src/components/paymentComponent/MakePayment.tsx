@@ -1,5 +1,5 @@
 import { loadStripe, Stripe } from '@stripe/stripe-js';
-import axios from 'axios';
+import api from '../../axios/api';
 
 const makePayment = async (cartItems: any[],orderId:string) => {
   // Load Stripe
@@ -14,7 +14,7 @@ const makePayment = async (cartItems: any[],orderId:string) => {
 console.log(body)
   // Make axios request to create checkout session
   try {
-    const response = await axios.post(`http://localhost:8080/api/order/checkout-session/${orderId}`, body);
+    const response = await api.post(`/api/order/checkout-session/${orderId}`, body);
 
     // Extract session ID from the response
     console.log(response.data)
