@@ -24,13 +24,15 @@
       padding: 20px;
       border-radius: 10px;
       border: 2px solid $soft-bg;
+      
     
     }
   
     .box1 {
       grid-column: span 1;
       grid-row: span 3;
-    
+      max-height:700px;
+      overflow-y:scroll;
     }
   
     .box2 {

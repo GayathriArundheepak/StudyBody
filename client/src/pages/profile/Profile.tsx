@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Field, ErrorMessage, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
-
 import ImageUpdate from "../../components/imageUpdate/ImageUpdate";
 import api from "../../axios/api";
 import Sidebar from "../../components/sidebar/Sidebar";
@@ -59,10 +58,8 @@ const Profile: React.FC = () => {
       const updatedProfilePic = formData.profilePic; // Get updated profilePic from formData
       const updatedValues = { ...values, profilePic: updatedProfilePic };
       api
-        .put(`/api/${userType}/updateProfile/${id}`, updatedValues, {
-          withCredentials: true,
-          headers: { "Content-Type": "application/json" },
-        })
+        .put(`/api/${userType}/updateProfile/${id}`, updatedValues, 
+        )
         .then((response) => {
           dispatch(updateUserSuccess(response.data));
           const responseData = response.data;

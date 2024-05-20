@@ -359,7 +359,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({ courseId }) => {
                 component="div"
               />
             </div>
-            <div>
+            <div className="promotion_video">
               <label htmlFor="promotion_video">Promotion Video</label>
               <VideoUpload onVideoUrlChange={handleVideoUpload} />
               <ErrorMessage

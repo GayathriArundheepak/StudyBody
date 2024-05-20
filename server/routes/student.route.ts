@@ -10,10 +10,10 @@ const studentRepository = new StudentRepository();
 const studentUsecase = new StudentUsecase(studentRepository);
 const studentController = new StudentController(studentUsecase);
 
-studentRouter.get("/studentsList", (req: Request, res: Response) => {
+studentRouter.get("/studentsList",  verifyToken,(req: Request, res: Response) => {
   studentController.getStudents(req, res);
 });
-studentRouter.get("/:id", (req: Request, res: Response) => {
+studentRouter.get("/:id", verifyToken, (req: Request, res: Response) => {
   studentController.getStudentById(req, res);
 });
 studentRouter.put(
@@ -24,20 +24,20 @@ studentRouter.put(
   }
 );
 studentRouter.post(
-  "/update-students-mylearning",
+  "/update-students-mylearning", verifyToken,
   (req: Request, res: Response) => {
     studentController.updateStudentMylearning(req, res);
   }
 );
 studentRouter.get(
-  "/mylearning/:studentId",
+  "/mylearning/:studentId", verifyToken,
   verifyToken,
   (req: Request, res: Response) => {
     studentController.getMyLearningCourses(req, res);
   }
 );
 studentRouter.get(
-  "/:currentPage/:itemsPerPAge",
+  "/:currentPage/:itemsPerPAge", verifyToken,
   async (req: Request, res: Response) => {
     await studentController.getUsers(req, res);
   }

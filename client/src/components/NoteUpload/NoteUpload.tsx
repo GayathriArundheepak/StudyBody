@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import AWS from "aws-sdk";
-
+import './NoteUpload.scss'
 interface NoteUploadProps {
   onNoteUrlChange: (newNoteUrl: string) => void;
 }
@@ -9,12 +9,6 @@ function NoteUpload({ onNoteUrlChange }: NoteUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [showButtons, setShowButtons] = useState(false);
 
-  // useEffect(() => {
-  //     // Check if environment variables are set
-  //     if (!process.env.REACT_APP_S3_BUCKET || !process.env.REACT_APP_REGION || !process.env.REACT_APP_ACCESS_KEY || !process.env.REACT_APP_SECRET_ACCESS_KEY) {
-  //         console.error('Missing environment variables for S3 configuration');
-  //     }
-  // }, []);
 
   const uploadNote = async () => {
     if (!file) {
@@ -85,8 +79,8 @@ function NoteUpload({ onNoteUrlChange }: NoteUploadProps) {
 
   return (
     <div>
-      <label htmlFor="note-input">{/* Display note viewer here */}</label>
-      <input id="note-input" type="file" onChange={handleFileChange} />
+      <label htmlFor="note-input" className="note-input-btn">Upload Notes</label>
+      <input id="note-input" type="file"      style={{ display: 'none' }}  onChange={handleFileChange} />
 
       {showButtons && (
         <div>

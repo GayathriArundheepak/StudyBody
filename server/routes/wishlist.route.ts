@@ -13,19 +13,19 @@ const wishlistController = new WishlistController(wishlistUsecase);
 
 // Route for creating a new course
 wishlistRouter.post(
-  "/add-wishlist/:studentId/:courseId",
+  "/add-wishlist/:studentId/:courseId", verifyToken,
   (req: Request, res: Response) => {
     wishlistController.addToWishlist(req, res);
   }
 );
 wishlistRouter.delete(
-  "/remove-wishlist/:studentId/:courseId",
+  "/remove-wishlist/:studentId/:courseId", verifyToken,
   (req: Request, res: Response) => {
     wishlistController.removeWishlist(req, res);
   }
 );
 wishlistRouter.get(
-  "/get-wishlist/:studentId",
+  "/get-wishlist/:studentId", verifyToken,
   (req: Request, res: Response) => {
     wishlistController.getWishlist(req, res);
   }

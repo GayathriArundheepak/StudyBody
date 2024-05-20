@@ -31,7 +31,7 @@ courseRouter.put(
     courseController.updateCourse(req, res);
   }
 );
-courseRouter.post("/coursesList", (req: Request, res: Response) => {
+courseRouter.post("/coursesList", verifyToken, (req: Request, res: Response) => {
   courseController.getCourses(req, res);
 });
 courseRouter.get(
@@ -40,32 +40,32 @@ courseRouter.get(
     courseController.getCoursesByTeacher(req, res);
   }
 );
-courseRouter.delete("/delete-course/:_id", (req: Request, res: Response) => {
+courseRouter.delete("/delete-course/:_id", verifyToken, (req: Request, res: Response) => {
   courseController.deleteCourse(req, res);
 });
 courseRouter.post(
-  "/update-course-students-list",
+  "/update-course-students-list", verifyToken,
   (req: Request, res: Response) => {
     courseController.updateCourseStudentsList(req, res);
   }
 );
-courseRouter.post("/create-review/:_id", (req: Request, res: Response) => {
+courseRouter.post("/create-review/:_id", verifyToken, (req: Request, res: Response) => {
   courseController.createReview(req, res);
 });
 courseRouter.post(
-  "/add-materials/:courseId/:teacherId",
+  "/add-materials/:courseId/:teacherId", verifyToken,
   (req: Request, res: Response) => {
     courseController.addMaterials(req, res);
   }
 );
-courseRouter.get("/materials/:courseId", (req: Request, res: Response) => {
+courseRouter.get("/materials/:courseId",  verifyToken,(req: Request, res: Response) => {
   courseController.getMaterials(req, res);
 });
-courseRouter.get("/fetch-course/:courseId", (req: Request, res: Response) => {
+courseRouter.get("/fetch-course/:courseId",(req: Request, res: Response) => {
   courseController.getCoursesById(req, res);
 });
 
-courseRouter.post("/add-subjects", (req: Request, res: Response) => {
+courseRouter.post("/add-subjects", verifyToken, (req: Request, res: Response) => {
   courseController.addSubject(req, res);
 });
 courseRouter.get("/subjects/:syllabus/:standard", (req, res) =>

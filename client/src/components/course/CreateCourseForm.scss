@@ -70,6 +70,13 @@ label {
   justify-content: center;
   gap: 10px
 }
+.promotion_video{
+  width: calc(100vw - 350px);
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  gap: 20px
+}
 
 .discription {
   width: calc(100vw - 350px);

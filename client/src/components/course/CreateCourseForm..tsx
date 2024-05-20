@@ -329,8 +329,8 @@ const CreateCourseForm: React.FC = () => {
                 component="div"
               />
             </div>
-            <div>
-              <label htmlFor="promotion_video"></label>
+            <div className="promotion_video">
+              <label htmlFor="promotion_video">Upload your promotion video</label>
               <VideoUpload onVideoUrlChange={handleVideoUpload} />
               <ErrorMessage
                 name="promotion_video"

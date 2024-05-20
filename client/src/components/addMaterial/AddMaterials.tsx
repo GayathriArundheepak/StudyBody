@@ -9,7 +9,7 @@ import { UserSliceState } from "../../redux/user/UserSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VideoUpload from "../videoUpload/VideoUpload";
-import NoteUpload from "../NoteUpload/NoteUpload";
+import NoteUpload from "../noteUpload/NoteUpload";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";

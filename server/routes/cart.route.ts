@@ -30,12 +30,12 @@ cartRouter.delete(
 );
 
 // Route for getting the cart for a student
-cartRouter.get("/get-cart/:studentId", (req: Request, res: Response) => {
+cartRouter.get("/get-cart/:studentId",  verifyToken, (req: Request, res: Response) => {
   cartController.getCart(req, res);
 });
 
 // Route for clearing the cart for a student
-cartRouter.post("/clear-cart/:studentId", (req: Request, res: Response) => {
+cartRouter.post("/clear-cart/:studentId", verifyToken, (req: Request, res: Response) => {
   cartController.clearCart(req, res);
 });
 

@@ -44,7 +44,6 @@ function ImageUpdate({ formData, setFormData }) {
       console.log("File uploaded successfully:", data);
       alert("File uploaded successfully.");
       // Set the imageUrl state with the URL of the uploaded image
-      // const imageUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${file.name}`;
       const imageUrl = data.Location;
       setImageUrl(imageUrl);
       setFormData({ ...formData, profilePic: imageUrl });
