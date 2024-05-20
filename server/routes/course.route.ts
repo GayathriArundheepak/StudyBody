@@ -31,7 +31,7 @@ courseRouter.put(
     courseController.updateCourse(req, res);
   }
 );
-courseRouter.post("/coursesList", verifyToken, (req: Request, res: Response) => {
+courseRouter.post("/coursesList", (req: Request, res: Response) => {
   courseController.getCourses(req, res);
 });
 courseRouter.get(

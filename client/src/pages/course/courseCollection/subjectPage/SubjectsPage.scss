@@ -2,7 +2,7 @@
   position: relative;
   .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     position: absolute;
     top: 100px;
@@ -12,6 +12,17 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
+
+    .card {
+      display: flex;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      max-width: 1200px;
+    }
   }
 
   .card-header {
@@ -26,6 +37,8 @@
     align-items: center;
     justify-content: center;
     gap: 50px;
+    max-width: 1200px;
+    min-width: 1200px;
   }
 
   @media screen and (max-width: 1320px) {

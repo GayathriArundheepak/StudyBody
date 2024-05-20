@@ -138,7 +138,7 @@ const ClassList: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
               </h3>
               <p>{classItem.description}</p>
               <button
-                className="btn"
+                className="subject-btn"
                 onClick={() => handleClickSubjects(classItem.standard)}
                 disabled={loading}
               >
