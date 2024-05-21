@@ -9,33 +9,21 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Navbar from "../navbar/Navbar";
 import api from "../../axios/api";
 import { ToastContainer, toast } from "react-toastify";
-
-interface Course {
-  _id: string;
-  course_title: string;
-  description: string;
-  subject: string;
-  prize: number;
-  materials: {
-    note: string[];
-    video: string[];
-  };
-  teacher_id: string;
-  slots: {
-    day: string[];
-    isWeekend: boolean;
-    time: string;
-    _id: string;
-  };
-}
+import ICourse from '../../interface/course/Course';
 
 function Cart(): JSX.Element {
-  const [cartItems, setCartItems] = useState<Course[]>([]);
+  const [cartItems, setCartItems] = useState<ICourse[]>([]);
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
+  const courses: ICourse[] = useSelector(
+    (state: RootState) => state.course.courses
+  ) as unknown as ICourse[]; // No need for type assertion
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>(
+    {}
+  );
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -61,8 +49,17 @@ function Cart(): JSX.Element {
       navigate("/signin");
     } else {
       fetchCartItems();
+   
     }
   }, [currentUser, navigate]);
+  useEffect(() => {
+    courses.forEach(course => {
+      if (course.teacher_id) {
+        fetchTeacherName(course.teacher_id);
+      }
+    });
+  }, [courses]);
+
 
   const handleCheckout = async () => {
     try {
@@ -135,7 +132,24 @@ function Cart(): JSX.Element {
     // Use navigate with -1 to go back to the previous page
     navigate(-1);
   };
-
+  const fetchTeacherName = async (teacherId: string) => {
+    if (teacherNames[teacherId]) {
+      return; // Already fetched
+    }
+    try {
+      const response = await api.get(`/api/teacher/${teacherId}`);
+      setTeacherNames((prevState) => ({
+        ...prevState,
+        [teacherId]: response.data.data.username,
+      }));
+    } catch (error) {
+      console.error(`Error fetching teacher with id ${teacherId}:`, error);
+      setTeacherNames((prevState) => ({
+        ...prevState,
+        [teacherId]: "Unknown",
+      }));
+    }
+  };
   return (
     <div className="cart">
       <Navbar />
@@ -147,21 +161,15 @@ function Cart(): JSX.Element {
           <div>Loading...</div>
         ) : cartItems && cartItems.length > 0 ? (
           <div className="cart-table">
-            {/* <div className="cart-header">
-            <div className="header-cell">Course Title <br /> <span>Description</span></div>
-            <div className="header-cell">Teacher</div>
-            <div className="header-cell">Subject</div>
-            <div className="header-cell">Prize</div>
-            <div className="header-cell"></div>
-          </div> */}
+    
             {cartItems.map((course) => (
               <div key={course._id} className="cart-item">
                 <div className="cell">
                   {course.course_title} <br />
                   <span>({course.description})</span>
                 </div>
-                <div className="cell">Rajeev kumar</div>
-                <div className="cell">{course.subject}</div>
+                <div className="cell">{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</div>
+                <div className="cell">{course.subject}({course.standard} - {course.syllabus})</div>
                 <div className="cell">{course.prize}</div>
                 <div className="cell">
                   <div

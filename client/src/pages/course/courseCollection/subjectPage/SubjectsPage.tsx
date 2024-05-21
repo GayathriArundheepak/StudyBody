@@ -65,7 +65,7 @@ function SubjectsPage(): JSX.Element {
             <div className="card-header">
               <h3>Subject</h3>
               <h3>Teacher</h3>
-              <h3>Description</h3>
+              <h3>Course Title (Description)</h3>
               <h3>Price</h3>
               <h3>Slot</h3>
               <h3>Available</h3>
@@ -84,9 +84,9 @@ function SubjectsPage(): JSX.Element {
                 onClick={() => handleRowClick(index)}
               >
                 <div className="card-content">
-                  <h3>{course.subject}</h3>
+                  <h3>{course.subject} <h6>({course.standard} - {course.syllabus})</h6> </h3>
                   <p>{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</p>
-                  <p>{course.description}</p>
+                  <h3>{course.course_title} <h6>({course.description})</h6></h3>
                   <p>
                     <strong>Price:</strong> {course.prize}
                   </p>

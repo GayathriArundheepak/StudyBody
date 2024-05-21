@@ -2,38 +2,53 @@ import  RemoveShoppingCartOutlinedIcon  from '@mui/icons-material/RemoveShopping
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import React, { useState, useEffect } from 'react';
 import './Wishlist.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import api from '../../axios/api';
-import { UserSliceState } from '../../redux/user/UserSlice';
+import { UserSliceState ,updateUserSuccess} from '../../redux/user/UserSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../navbar/Navbar';
 import { ToastContainer, toast } from 'react-toastify';
-interface Course {
-  _id: string;
-  course_title: string;
-  description: string;
-  subject: string;
-  prize: number;
-  materials: {
-    note: string[];
-    video: string[];
-  };
-  teacher_id: string;
-  slot: {
-    day: string[];
-    isWeekend: boolean;
-    time: string;
-    _id: string;
-  };
-}
+import ICourse from '../../interface/course/Course';
+
 
 function Wishlist(): JSX.Element {
-  const [wishlistCourses, setWishlistCourses] = useState<Course[]>([]);
+  const [wishlistCourses, setWishlistCourses] = useState<ICourse[]>([]);
   const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
+  const [cartAdded, setCartAdded] = useState<boolean>(false);
+  const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>({});
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const courses: ICourse[] = useSelector(
+    (state: RootState) => state.course.courses
+  ) as unknown as ICourse[]; // No need for type assertion
+  const fetchTeacherName = async (teacherId: string) => {
+    if (teacherNames[teacherId]) {
+      return; // Already fetched
+    }
+    try {
+      const response = await api.get(`/api/teacher/${teacherId}`);
+      setTeacherNames(prevState => ({
+        ...prevState,
+        [teacherId]: response.data.data.username,
+      }));
+    } catch (error) {
+      console.error(`Error fetching teacher with id ${teacherId}:`, error);
+      setTeacherNames(prevState => ({
+        ...prevState,
+        [teacherId]: "Unknown",
+      }));
+    }
+  };
 
+  useEffect(() => {
+    courses.forEach(course => {
+      if (course.teacher_id) {
+        fetchTeacherName(course.teacher_id);
+      }
+    });
+  }, [courses]);
   useEffect(() => {
     const fetchWishlistCourses = async () => {
       try {
@@ -71,7 +86,27 @@ function Wishlist(): JSX.Element {
       fetchWishlistCourses();
     }
   }, [currentUser, navigate]);
+  const handleAddToCart = async (courseId:string) => {
 
+    if (currentUser) {
+      const studentId = currentUser._id;
+
+      // Make API call to add to cart
+      api
+        .post(`/api/cart/add-cart/${studentId}/${courseId}`)
+        .then((response) => {
+          setCartAdded(true);
+          dispatch(updateUserSuccess(response.data));
+        })
+        .catch((error) => {
+          console.log("Error adding course to cart:", error);
+          // Handle error if necessary
+        });
+    } else {
+      toast.error("you are not signin");
+      navigate("/signin");
+    }
+  }
 
   const handleRemoveItem = (courseId:string) => {
     if(currentUser){
@@ -109,11 +144,10 @@ function Wishlist(): JSX.Element {
     
        <div className="header-cell">Subject</div>
         <div className="header-cell">Teacher</div>
-        <div className="header-cell">Description</div>
+        <div className="header-cell">Course Title</div>
         <div className="header-cell">Prize</div>
         <div className="header-cell">Slot</div>
         <div className="header-cell">Available</div>
-        <div className="header-cell">Review</div>
         <div className="header-cell">Action</div>
       </div>
       {wishlistCourses.map((course) => (
@@ -121,20 +155,19 @@ function Wishlist(): JSX.Element {
 
         <div key={course._id} className="wishlist-item">
             
-          <div className="cell">{course.subject}</div>
-          <div className="cell">{course.teacher_id}</div>
-          <div className="cell">{course.description}</div>
+          <div className="cell">{course.subject}({course.standard} - {course.syllabus})</div>
+          <div className="cell">{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</div>
+          <div className="cell">{course.course_title}</div>
           <div className="cell">{course.prize}</div>
           <div className="cell">
             {course.slot.time} <br />
            <span  className="day-highlight">{course.slot.day.join('-')}</span> 
           </div>
           <div className="cell available">Yes</div>
-          <div className="cell">Reviews</div>
           <div className="cell ">
       
-            <Link to='/cart'>
-            <button className="add-to-cart-btn">Add Cart</button>
+            <Link to='/cart'> 
+            <button className="add-to-cart-btn"  onClick={() => handleAddToCart(course._id)}   >Add Cart</button>
             </Link>
           </div>
           <div className="removeItemIcon" onClick={() => handleRemoveItem(course._id)}>
