@@ -3,20 +3,22 @@ import "./SubjectsPage.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import Icons from "../../../../components/icons/Icons";
-import Course from "../../../../interface/course/Course";
+import ICourse from "../../../../interface/course/Course";
 import VideoPreview from "../../../../components/videoPreview/VideoPreview";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../../components/navbar/Navbar";
 import api from '../../../../axios/api';
+import { UserSliceState } from "../../../../redux/user/UserSlice";
 
 
 function SubjectsPage(): JSX.Element {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>({});
+  const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
-  const courses: Course[] = useSelector(
+  const courses: ICourse[] = useSelector(
     (state: RootState) => state.course.courses
-  ) as unknown as Course[]; // No need for type assertion
+  ) as unknown as ICourse[]; // No need for type assertion
   const fetchTeacherName = async (teacherId: string) => {
     if (teacherNames[teacherId]) {
       return; // Already fetched
@@ -86,7 +88,7 @@ function SubjectsPage(): JSX.Element {
                 <div className="card-content">
                   <h3>{course.subject} <h6>({course.standard} - {course.syllabus})</h6> </h3>
                   <p>{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</p>
-                  <h3>{course.course_title} <h6>({course.description})</h6></h3>
+                  <h3>{course.course_title} <h6></h6></h3>
                   <p>
                     <strong>Price:</strong> {course.prize}
                   </p>
@@ -111,7 +113,10 @@ function SubjectsPage(): JSX.Element {
                     )}
                   </div>
                   <div >
+                    { currentUser && currentUser._id && course.students_list.includes(currentUser?._id )?
+                    <p>Entrolled</p> :
                     <Icons courseId={course._id} />
+                    }
                   </div>
                 </div>
               </div>
