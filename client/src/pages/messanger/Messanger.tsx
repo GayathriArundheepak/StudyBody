@@ -2,11 +2,10 @@ import Conversation from "../../components/conversation/Conversation";
 import Navbar from "../../components/navbar/Navbar";
 import "./Messanger.scss";
 import Message from "../../components/message/Message";
-import ChatOnline from "../../components/chatOnline/ChatOnline";
-import { useDispatch, useSelector } from "react-redux";
+// import ChatOnline from "../../components/chatOnline/ChatOnline";
+import { useSelector } from "react-redux";
 import {
-  updateUserStart,
-  updateUserSuccess,
+ 
   UserSliceState,
 } from "../../redux/user/UserSlice";
 import { RootState } from "../../redux/store";
@@ -14,20 +13,9 @@ import { useEffect, useRef, useState } from "react";
 import api from "../../axios/api";
 import Community from "../../components/community/Community";
 import { io, Socket } from "socket.io-client";
+import IConversation from "../../interface/messanger/Conversation";
+import IMessageData from "../../interface/messanger/MessageData";
 
-interface Conversation {
-  _id: string;
-  members: string[];
-  conversationName: string;
-  isGroup: boolean;
-}
-interface MessageData {
-  conversationId: string;
-  sender: string;
-  text: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 const Messanger: React.FC = () => {
   const { currentUser }: UserSliceState = useSelector(
@@ -38,9 +26,9 @@ const Messanger: React.FC = () => {
 
   const [conversations, setConversations] = useState([]);
 
-  const [currentChat, setCurrentChat] = useState<Conversation | null>(null);
-  const [messages, setMessages] = useState<(MessageData | null)[]>([]);
-  const [arrivalMessage, setArrivalMessage] = useState<MessageData | null>(
+  const [currentChat, setCurrentChat] = useState<IConversation | null>(null);
+  const [messages, setMessages] = useState<(IMessageData | null)[]>([]);
+  const [arrivalMessage, setArrivalMessage] = useState<IMessageData | null>(
     null
   );
   const [newMessage, setNewMessage] = useState("");

@@ -3,7 +3,7 @@ import api from "../../../axios/api";
 import "./UserList.scss"; // Import the shared Sass file
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
-
+import IUser from "../../../interface/user/User"
 interface User {
   _id: string;
   username: string;
@@ -23,7 +23,7 @@ interface UserListProps {
 }
 
 function UserList({ userType }: UserListProps) {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(2);
   const navigate = useNavigate(); // Get the history object
@@ -31,7 +31,6 @@ function UserList({ userType }: UserListProps) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // const response = await api.get(`/api/${userType}/${currentPage}/${itemsPerPage}`);
         const response = await api.get(`/api/${userType}/${userType}sList`);
         setUsers(response.data.data);
       } catch (error) {

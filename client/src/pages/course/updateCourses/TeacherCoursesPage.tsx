@@ -15,10 +15,11 @@ import {
 } from "@mui/material";
 import Course from "../../../interface/course/Course";
 import CourseResponse from "../../../interface/course/CourseResponse";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import VideoChatSharpIcon from '@mui/icons-material/VideoChatSharp';
+import VideoChatSharpIcon from "@mui/icons-material/VideoChatSharp";
+import api from "../../../axios/api";
 
 const TeacherCoursesPage: React.FC = () => {
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ const TeacherCoursesPage: React.FC = () => {
   }, [currentUser]);
   const fetchCourses = async (userId: string) => {
     try {
-      const response = await axios.get<CourseResponse>(
-        `http://localhost:8080/api/course/teachers_coursesList/${userId}`
+      const response = await api.get<CourseResponse>(
+        `/api/course/teachers_coursesList/${userId}`
       );
       setCourses(response.data.courseList); // Here you set courses using response.data
       console.log(response.data);
@@ -53,8 +54,8 @@ const TeacherCoursesPage: React.FC = () => {
   const handleDeleteCourse = async (courseId: string) => {
     try {
       console.log(courseId);
-      await axios.delete(
-        `http://localhost:8080/api/course/delete-course/${courseId}`
+      await api.delete(
+        `/api/course/delete-course/${courseId}`
       );
       setCourses(courses.filter((course) => course._id !== courseId));
     } catch (error) {
@@ -105,9 +106,14 @@ const TeacherCoursesPage: React.FC = () => {
                         Add Materials
                       </Button>
                       <Button onClick={() => handleAddMaterials(course._id)}>
-                      <VideoChatSharpIcon style={{ color: '#4d2c5e' }} />
-                        <a href='/videoChat' target="_blank" rel="noopener noreferrer" className="sidebarListItemText">
-                            Make Live Class
+                        <VideoChatSharpIcon style={{ color: "#4d2c5e" }} />
+                        <a
+                          href="/videoChat"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="sidebarListItemText"
+                        >
+                          Make Live Class
                         </a>
                       </Button>
                     </TableCell>

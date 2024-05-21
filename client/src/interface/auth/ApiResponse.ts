@@ -1,4 +1,4 @@
-export default interface ApiResponse {
+export default interface IApiResponse {
   data: object;
   message: string;
   success: boolean;

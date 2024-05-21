@@ -3,33 +3,21 @@ import "./CourseList.scss";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../../../axios/api";
 import { FormikProps } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Syllabus } from "../../../../enum/SyllabusEnums";
 import Navbar from "../../../../components/navbar/Navbar";
-interface Course {
-  _id: string;
-  course_title?: string;
-  subject?: string;
-  syllabus?: string;
-  standard?: string;
-  prize?: number;
-  adminApproved: boolean;
-  slot: {
-    day: string[];
-    isWeekend: boolean;
-    time: string;
-  };
-}
+import ICourse from '../../../../interface/course/Course'
+
 
 function CourseList() {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<ICourse[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(2);
-  const [selectedSyllabus, setSelectedSyllabus] = useState<string>("ICSE");
+  const [selectedSyllabus, setSelectedSyllabus] = useState<string>('ICSE');
   const [selectedStandard, setSelectedStandard] = useState<string>("1");
   const [selectedSubject, setSelectedSubject] = useState<string>("All");
   const [loading, setLoading] = useState(true);
   const [subjects, setSubjects] = useState<string[]>([]);
-  const navigate = useNavigate(); // Get the history object
+
   useEffect(() => {
     const fetchCourses = async () => {
       try {
@@ -113,19 +101,14 @@ function CourseList() {
       console.error("Error disapproving course:", error);
     }
   };
-  const handleBack = () => {
-    // Use navigate with -1 to go back to the previous page
-    navigate(-1);
-  };
+ 
 
   return (
     <>
       <div className="course-list-container">
         <ToastContainer />
         <Navbar />
-        {/* <button onClick={handleBack}>back</button> */}
         <h2>Course List</h2>
-        {/* Syllabus, Standard, and Subject selection */}
         <div className="selection-container">
           <label htmlFor="syllabus">Syllabus:</label>
           <select
@@ -133,9 +116,9 @@ function CourseList() {
             value={selectedSyllabus}
             onChange={(e) => setSelectedSyllabus(e.target.value)}
           >
-            <option value="ICSE">ICSE</option>
-            <option value="CBSE">CBSE</option>
-            <option value="STATE">STATE</option>
+            <option value="ICSE">{Syllabus.ICSE}</option>
+            <option value="CBSE">{Syllabus.CBSE}</option>
+            <option value="STATE">{Syllabus.STATE}</option>
           </select>
           <label htmlFor="standard">Standard:</label>
           <select
@@ -189,7 +172,7 @@ function CourseList() {
                           currentPage * itemsPerPage,
                           (currentPage + 1) * itemsPerPage
                         )
-                        .map((course: Course) => (
+                        .map((course: ICourse) => (
                           <tr key={course._id}>
                             <td>{course.course_title}</td>
                             <td>{course.subject}</td>
@@ -222,7 +205,7 @@ function CourseList() {
                           currentPage * itemsPerPage,
                           (currentPage + 1) * itemsPerPage
                         )
-                        .map((course: Course) => (
+                        .map((course: ICourse) => (
                           <tr key={course._id}>
                             <td>{course.course_title}</td>
                             <td>{course.subject}</td>

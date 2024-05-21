@@ -5,15 +5,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../../../../components/navbar/Navbar";
+import { Syllabus } from "../../../../enum/SyllabusEnums";
 
-interface AddSubjectProps {}
 
-const AddSubject: React.FC<AddSubjectProps> = () => {
-  const navigate = useNavigate(); // Get the history object
+const AddSubject: React.FC = () => {
+
   const initialValues = {
-    selectedSyllabus: "ICSE",
+    selectedSyllabus: Syllabus.ICSE,
     selectedStandard: "1",
     subject: "",
   };
@@ -54,16 +53,11 @@ const AddSubject: React.FC<AddSubjectProps> = () => {
     }
     setSubmitting(false);
   };
-  const handleBack = () => {
-    // Use navigate with -1 to go back to the previous page
-    navigate(-1);
-  };
 
   return (
     <div className="add-subject">
       <Navbar />
       <div className="add-subject-container">
-        {/* <button onClick={handleBack}>back</button> */}
         <ToastContainer />
         <h2>Add Subject</h2>
         <Formik initialValues={initialValues} onSubmit={onSubmit}>
@@ -78,9 +72,9 @@ const AddSubject: React.FC<AddSubjectProps> = () => {
                   id="selectedSyllabus"
                   name="selectedSyllabus"
                 >
-                  <option value="ICSE">ICSE</option>
-                  <option value="CBSE">CBSE</option>
-                  <option value="STATE">STATE</option>
+                  <option value="ICSE">{Syllabus.ICSE}</option>
+                  <option value="CBSE">{Syllabus.CBSE}</option>
+                  <option value="STATE">{Syllabus.STATE}</option>
                 </Field>
                 <ErrorMessage
                   name="selectedSyllabus"
