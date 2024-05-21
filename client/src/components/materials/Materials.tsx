@@ -7,6 +7,7 @@ import { RootState } from "../../redux/store";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import Navbar from "../navbar/Navbar";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { url } from "inspector";
 
 interface Material {
   headline: string;
@@ -49,11 +50,14 @@ const Materials: React.FC = () => {
 
     fetchData();
   }, [currentUser, courseId]);
-
+  
   const handleVideoSelect = (videoUrl: string) => {
     console.log(videoUrl); // Check if the correct video URL is logged
     setSelectedVideo(videoUrl);
   };
+useEffect(()=>{
+
+},[selectedVideo])
   const handleDownload = (url: string) => {
     const link = document.createElement("a");
     link.href = url;
@@ -71,7 +75,7 @@ const Materials: React.FC = () => {
       <div className="left-section">
         <div className="video-player">
           {selectedVideo ? (
-            <video width="891" height="500" controls>
+            <video  key={selectedVideo} width="891" height="500" controls>
               <source src={selectedVideo} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
