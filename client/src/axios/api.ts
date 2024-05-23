@@ -13,7 +13,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log('Request Interceptor:', config);
+    // console.log('Request Interceptor:', config);
     return config;
   },
   function (error) {
@@ -27,7 +27,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function (response) {
     // Do something with response data
-    console.log('Response Interceptor:', response);
+    // console.log('Response Interceptor:', response);
     return response;
   },
   function (error) {

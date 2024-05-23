@@ -7,20 +7,11 @@ import { RootState } from "../../redux/store";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import Navbar from "../navbar/Navbar";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { url } from "inspector";
+import ICourseMaterial from "../../interface/course/CourseMaterial";
 
-interface Material {
-  headline: string;
-  url: string;
-}
-
-interface CourseMaterial {
-  note?: Material;
-  video?: Material;
-}
 
 const Materials: React.FC = () => {
-  const [materials, setMaterials] = useState<CourseMaterial[]>([]);
+  const [materials, setMaterials] = useState<ICourseMaterial[]>([]);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [subject, setSubject] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);

@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Icons.scss";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { UserSliceState, updateUserSuccess } from "../../redux/user/UserSlice";
 import { useNavigate } from "react-router-dom";
 import api from "../../axios/api";
-import { string } from "yup";
+
 
 interface IconsProps {
   courseId: string; // Define the type for courseId

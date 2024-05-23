@@ -3,6 +3,7 @@ interface IUser {
     username: string;
     email: string;
     otpApproved: boolean;
+    profilePic?: string;
     mylearnings?: string;
     gender: string;
     date_of_birth?: string;
@@ -10,5 +11,6 @@ interface IUser {
     qualifications?: string;
     block: boolean;
     adminApproved: boolean;
+    commissionAmount?:number;
   }
 export default IUser  

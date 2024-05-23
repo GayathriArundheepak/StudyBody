@@ -1,5 +1,3 @@
-
-
 // Success.tsx
 import React, { useEffect } from 'react';
 import './Success.scss';

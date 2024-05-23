@@ -69,7 +69,6 @@ function BarChartBox() {
 
         const courseCountByMonth: { [key: string]: { [key: string]: number } } =
           {};
-        console.log("haii");
         courseDataBySyllabus?.forEach(({ syllabus, data }) => {
           data.forEach((course: Course) => {
             const createdAtDate = new Date(course.createdAt);

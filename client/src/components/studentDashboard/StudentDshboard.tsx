@@ -12,11 +12,11 @@ import About from "../about/About";
 const StudentDashboard = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
 
-  // const scrollToAbout = () => {
-  //   if (aboutRef.current) {
-  //     aboutRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
+  const scrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="studentDashboard">

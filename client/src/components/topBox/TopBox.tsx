@@ -6,25 +6,27 @@ import Course from '../../interface/course/Course';
 import { UserSliceState } from "../../redux/user/UserSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-interface User {
-  _id: string;
-  username: string;
-  profilePic: string;
-  email: string;
-  otpApproved: boolean;
-  mylearnings?: string;
-  gender: string;
-  date_of_birth?: string;
-  rating?: number;
-  qualifications?: string;
-  block: boolean;
-  adminApproved: boolean;
-  commissionAmount:number;
-}
+ import IUser from '../../interface/user/User';
+
+// interface IUser {
+//   _id: string;
+//   username: string;
+//   profilePic: string;
+//   email: string;
+//   otpApproved: boolean;
+//   mylearnings?: string;
+//   gender: string;
+//   date_of_birth?: string;
+//   rating?: number;
+//   qualifications?: string;
+//   block: boolean;
+//   adminApproved: boolean;
+//   commissionAmount:number;
+// }
 const TopBox = () => {
   const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
   const userType: string = useSelector((state: RootState) => state.user.userType) || 'student';
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [amount, setamount] = useState(0);
  
@@ -41,9 +43,9 @@ const TopBox = () => {
     const fetchData = async () => {
       try {
         const response = await api.get(`/api/teacher/teachersList`);
-        const filteredUsers = response.data.data.filter((user: User) => user.otpApproved && user.adminApproved);
+        const filteredUsers = response.data.data.filter((user: IUser) => user.otpApproved && user.adminApproved);
         const updatedUsers = await Promise.all(
-          filteredUsers.map(async (user:User) => {
+          filteredUsers.map(async (user:IUser) => {
             const commissionAmount = await fetchCourses(user._id);
                   // Round the commission amount to a maximum of 3 decimal digits
           const roundedCommissionAmount = parseFloat(commissionAmount.toFixed(3));

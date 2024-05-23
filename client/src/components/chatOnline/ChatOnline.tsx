@@ -6,77 +6,51 @@ import { useSelector } from "react-redux";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import Success from "../success/Success";
 import { io, Socket } from "socket.io-client";
+import IConversation from "../../interface/messanger/Conversation";
+import IFriend from "../../interface/messanger/Friend";
+import IOnlineUser from "../../interface/messanger/OnlineUser";
 
-interface Friend {
-  _id: string;
-  profilePic?: string | null;
-  username?: string;
-  email: string;
-  password?: string;
-  newPassword?: string;
-  gender?: string;
-  date_of_birth?: Date;
-  userType?: string;
-  wishlist?: string[];
-}
-interface User {
-  userId: string;
-  socketId: string;
-}
 
-interface Conversation {
-  _id: string;
-  members: string[];
-  conversationName: string;
-  isGroup: boolean;
-}
+
 interface ChatOnlineProps {
-  onlineUsers: Friend[]; // Specify the type of onlineUsers
-  selectedCourseStudents: Friend[];
-  setCurrentChat: (conversation: Conversation | null) => void;
+  // onlineUsers: IOnlineUser[]; // Specify the type of onlineUsers
+  selectedCourseStudents: IFriend[];
+  setCurrentChat: (conversation: IConversation | null) => void;
 }
 // setCurrentChat
 function ChatOnline({
-  onlineUsers,
   selectedCourseStudents,
   setCurrentChat,
 }: ChatOnlineProps) {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
+    const socket = useRef<Socket | null>(null);
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
   const currentId = currentUser?._id;
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const [onlineFriends, setOnlineFriends] = useState<Friend[]>([]);
-  const socket = useRef<Socket | null>(null);
+  const [friends, setFriends] = useState<IFriend[]>([]);
+  const [onlineFriends, setOnlineFriends] = useState<IFriend[]>([]);
 
-  useEffect(() => {
-    //  return setSocket(io("ws://localhost:8900"));
-    socket.current = io("ws://localhost:8900");
-  }, []);
-  useEffect(() => {
-    console.log("socket", socket);
-    socket?.current?.emit("addUser", currentUser?._id);
-    socket?.current?.on("getUsers", (users) => {
-      setOnlineFriends(
-        friends.filter((f) => users.some((u: User) => u.userId === f._id))
-      );
-    });
-  }, [currentUser]);
   useEffect(() => {
     setFriends(selectedCourseStudents);
   }, [selectedCourseStudents]);
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+  }, []);
 
   useEffect(() => {
-    // setOnlineFriends(friends.filter((f) => onlineUsers.some((u) => u._id === f._id)));
-    setOnlineFriends(friends);
-  }, [
-    friends,
-    //  onlineUsers
-  ]);
+    if (socket.current) {
+      socket.current.emit("addUser", currentUser?._id);
+      socket.current.on("getUsers", (users) => {
+        setOnlineFriends(
+          friends.filter((f) => users.some((u: IOnlineUser) => u.userId === f._id))
+        );
+      });
+    }
+  }, [currentUser, friends]);
 
-  const handleClick = async (user: Friend) => {
+  const handleClick = async (user: IFriend) => {
     try {
       const res = await api.get(
         `/api/conversations/find/${currentId}/${user._id}`
@@ -110,10 +84,10 @@ function ChatOnline({
     }
   };
 
-  // console.log(onlineFriends,'onlinef')
+  console.log(onlineFriends,'onlinef')
   return (
-    <div className="chatOnline">
-      {onlineFriends.map((user) => (
+    <div className="chatOnline-page">
+      {friends.map((user, index) => (
         <div className="chatOnlineFriend" onClick={() => handleClick(user)}>
           <div className="chatOnlineImgContainer">
             <img
@@ -121,14 +95,17 @@ function ChatOnline({
               src={user?.profilePic ?? ""}
               alt="profile pic"
             />
-            <div className="chatOnlineBadge"></div>
+            <div className={`chatOnlineBadge ${onlineFriends.some((f) => f._id === user._id) ? "online" : "offline"}`}></div>
           </div>
           <span className="chatOnlineName">
-            {user._id === currentUser?._id ? "You" : user.username}
+            {user._id === currentUser?._id
+              ? "You"
+              : `${user.username} ${index === 0 ? "(Teacher)" : ""}`}
           </span>
         </div>
       ))}
     </div>
   );
 }
+
 export default ChatOnline;

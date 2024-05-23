@@ -1,34 +1,16 @@
 import "./Conversation.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  updateUserStart,
-  updateUserSuccess,
   UserSliceState,
 } from "../../redux/user/UserSlice";
 import { RootState } from "../../redux/store";
 import { useEffect, useState } from "react";
 import api from "../../axios/api";
-
-interface IConversation {
-  members: string[];
-  conversationName?: string; // Make conversationName optional for group chats
-  isGroup: boolean;
-}
+import IConversation from "../../interface/messanger/Conversation";
+import IUser from "../../interface/user/User";
 
 interface ConversationProps {
   conversation: IConversation;
-}
-
-interface User {
-  profilePic?: string | null;
-  username?: string;
-  email: string;
-  password?: string;
-  newPassword?: string;
-  gender?: string;
-  date_of_birth?: Date;
-  userType?: string;
-  wishlist?: string[];
 }
 
 const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
@@ -37,7 +19,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
   );
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
     const getUser = async () => {

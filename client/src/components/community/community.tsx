@@ -7,51 +7,42 @@ import Course from "../../interface/course/Course";
 import api from "../../axios/api";
 import ChatOnline from "../chatOnline/ChatOnline";
 import { Socket } from "socket.io-client";
-interface Conversation {
-  _id: string;
-  members: string[];
-  conversationName: string;
-  isGroup: boolean;
-}
-interface Conversation {
-  _id: string;
-  members: string[];
-  // Other properties
-}
+import IFriend from "../../interface/messanger/Friend";
+import IConversation from "../../interface/messanger/Conversation";
+import IOnlineUser from "../../interface/messanger/OnlineUser";
+
 interface CommunityProps {
-  setCurrentChat: (chat: Conversation | null) => void;
+  setCurrentChat: (chat: IConversation | null) => void;
+  // onlineUsers:IOnlineUser;
 }
 
-interface Friend {
-  _id: string;
-  profilePic?: string | null;
-  username?: string;
-  email: string;
-  password?: string;
-  newPassword?: string;
-  gender?: string;
-  date_of_birth?: Date;
-  userType?: string;
-  wishlist?: string[];
-}
+
 const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
+  const userType: string = useSelector(
+    (state: RootState) => state.user.userType
+  ) || "student";
   const myLearningIds: string[] = currentUser?.mylearnings || [];
   const [myLearnings, setMyLearnings] = useState<Course[]>([]);
   const [selectedCourseStudents, setSelectedCourseStudents] = useState<
-    Friend[]
+    IFriend[]
   >([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const socket = useRef<Socket | null>(null);
-  const [onlineUsers, setOnlineUsers] = useState([]);
+  // const [onlineUsers, setOnlineUsers] = useState([]);
   const scrollRef = useRef();
   // const [currentChat, setCurrentChat] = useState(null);
   useEffect(() => {
     const fetchMyLearningDetails = async () => {
       try {
-        await myLearningIds.map((id) => fetchCourseDetails(id));
+        if (userType === "teacher") {
+          const response = await api.get(`/api/course/teachers_coursesList/${currentUser?._id}`);
+          setMyLearnings(response.data.courseList);
+        } else {
+          await myLearningIds.map((id) => fetchCourseDetails(id));
+        }
       } catch (error) {
         console.error("Error fetching course details:", error);
       }
@@ -61,56 +52,70 @@ const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
       try {
         const response = await api.get(`/api/course/fetch-course/${id}`);
         console.log("coursecommunity:", response.data.courseList);
-        setMyLearnings([response.data.courseList]);
-        console.log(myLearnings);
-        const selectedCourse = response.data.courseList;
-        const studentIds = selectedCourse.students_list;
-        const studentDetails = await Promise.all(
-          studentIds.map((id: string) => api.get(`/api/student/${id}`))
-        );
-        const students = studentDetails.map((res) => res.data.data);
-        setSelectedCourseStudents(students);
+        setMyLearnings((prevMyLearnings) => [
+          ...prevMyLearnings,
+          response.data.courseList,
+        ]);
+        console.log('ml',myLearnings);
+      
      
       } catch (error) {
         // Handle errors, e.g., logging or displaying error messages
         throw new Error(`Error fetching course details for ID ${id}: ${error}`);
       }
     };
+if(userType === 'student'){
 
-    if (myLearningIds.length > 0) {
-      fetchMyLearningDetails();
-    }
-  }, [myLearningIds]);
+  if (myLearningIds.length > 0) {
+    fetchMyLearningDetails();
+  }
+}else if (userType === 'teacher'){
+  fetchMyLearningDetails();
+}
+  }, []);
 
   const handleCourseClick = async (courseId: string) => {
-    setSelectedCourseId(courseId);
+    if (selectedCourseId === courseId) {
+      // Deselect the course if it is already selected
+      setSelectedCourseId(null);
+      setSelectedCourseStudents([]);
+    } else {
+      setSelectedCourseId(courseId);
+      try {
+        const response = await api.get(`/api/course/fetch-course/${courseId}`);
+        const selectedCourse = response.data.courseList;
+        const studentIds = selectedCourse.students_list;
+        const studentDetails = await Promise.all(
+          studentIds.map((id: string) => api.get(`/api/student/${id}`))
+        );
+        const teacherDetails = await api.get(`/api/teacher/${selectedCourse.teacher_id}`);
+        const students = studentDetails.map((res) => res.data.data);
+        const teacher = teacherDetails.data.data;
+        setSelectedCourseStudents([teacher, ...students]);
+      } catch (error) {
+        console.error("Error fetching students or teacher:", error);
+      }
   };
-
+}
   return (
     <div className="community">
-      <h2 className="communityTitle">My Learning communities</h2>
-      <div className="courseList">
-        {myLearnings.map((course: Course) => (
-          <div
-            key={course._id}
-            className="courseItem"
-            onClick={() => handleCourseClick(course._id)}
-          >
-            <h3>{course.course_title}</h3>
-          </div>
-        ))}
-      </div>
-      <div className="chatOnline">
-        {selectedCourseId && (
-          <ChatOnline
-            selectedCourseStudents={selectedCourseStudents}
-            onlineUsers={onlineUsers}
-            setCurrentChat={setCurrentChat} // Pass setCurrentChat here
-          />
-        )}
-      </div>
+    <h2 className="communityTitle">My Learning communities</h2>
+    <div className="courseList">
+      {myLearnings.map((course: Course) => (
+        <div key={course._id} className="courseItem">
+          <h3 onClick={() => handleCourseClick(course._id)}>{course.course_title}</h3>
+          {selectedCourseId === course._id && (
+              <ChatOnline
+                selectedCourseStudents={selectedCourseStudents}
+                //  onlineUsers={onlineUsers}
+                setCurrentChat={setCurrentChat} // Pass setCurrentChat here
+              />
+        
+          )}
+        </div>
+      ))}
     </div>
+  </div>
   );
 };
-
 export default Community;

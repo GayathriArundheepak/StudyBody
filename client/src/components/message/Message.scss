@@ -1,8 +1,6 @@
 .message {
     display: flex;
     flex-direction: column;
-   
-
     &.own {
         align-items: flex-end;
 
@@ -31,6 +29,11 @@
             // border-radius: 20px;
             color: rgb(231, 24, 24);
             // max-width: 150px;
+        }
+        .isTeacher{
+            font-size: 12px;
+            margin-top: 20px;
+            margin-left: -50px;
         }
     }
 

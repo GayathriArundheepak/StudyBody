@@ -33,7 +33,7 @@ const Messanger: React.FC = () => {
   );
   const [newMessage, setNewMessage] = useState("");
   const socket = useRef<Socket | null>(null);
-  // const [onlineUsers, setOnlineUsers] = useState([]);
+   const [onlineUsers, setOnlineUsers] = useState([]);
   const scrollRef = useRef<HTMLDivElement | null>(null);
   console.log("socket", socket);
   useEffect(() => {
@@ -57,7 +57,14 @@ const Messanger: React.FC = () => {
         updatedAt: new Date(),
       });
     });
-  }, []);
+    return () => {
+      if (socket.current) {
+        socket.current.emit("removeUser", currentUser?._id); // Custom event to handle user removal
+        socket.current.disconnect();
+        socket.current = null;
+      }
+    };
+  }, [currentUser]);
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
@@ -70,6 +77,7 @@ const Messanger: React.FC = () => {
     } else {
       socket?.current?.emit("addUser", currentUser?._id);
     }
+   
   });
 
   useEffect(() => {
@@ -85,6 +93,7 @@ const Messanger: React.FC = () => {
       }
     };
     getConversations();
+
   }, [currentUser?._id]);
 
   useEffect(() => {

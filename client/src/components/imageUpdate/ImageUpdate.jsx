@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import AWS from "aws-sdk";
-// import { UserSliceState} from '../redux/user/UserSlice';
-// import { RootState } from '../redux/store';
 import { useSelector } from "react-redux";
 import "./ImageUpdate.scss";
-// import dotenv from 'dotenv';
-// dotenv.config();
+
 
 function ImageUpdate({ formData, setFormData }) {
   const { currentUser } = useSelector((state) => state.user);

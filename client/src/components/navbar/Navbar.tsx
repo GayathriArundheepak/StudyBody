@@ -16,6 +16,7 @@ import {
 } from "../../redux/course/CourseSlice"; // Import the fetchCoursesStart action
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+
 const Navbar: React.FC = () => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user

@@ -1,5 +1,5 @@
 // NotFound.scss
-.not-found-container {
+.NotFound-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,28 +7,19 @@
     text-align: center;
     margin-top: 50px;
   
-    // h1 {
-    //   font-size: 2rem;
-    //   margin-bottom: 20px;
-    // }
+    .NotFound-status-code {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
   
-    // p {
-    //   font-size: 1.2rem;
-    //   margin-bottom: 20px;
-    // }
+    .NotFound-message {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
   
-    // a {
-    //   display: inline-block;
-    //   padding: 10px 20px;
-    //   background-color: #007bff;
-    //   color: #fff;
-    //   text-decoration: none;
-    //   border-radius: 5px;
-    //   transition: background-color 0.3s ease;
   
-    //   &:hover {
-    //     background-color: #0056b3;
-    //   }
-    // }
+    .NotFound-home{
+      color: blue;
+    }
   }
   

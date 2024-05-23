@@ -6,25 +6,11 @@ import {
   fetchCoursesSuccess,
 } from "../../redux/course/CourseSlice"; // Import the fetchCoursesStart action
 
-import axios from "axios";
 import "./ClassList.scss";
 import { RootState } from "../../redux/store";
 import api from '../../axios/api'
+ import ClassStandard from "../../enum/ClassStandardEnums";
 
-enum ClassStandard {
-  FIRST_STANDARD = "1",
-  SECOND_STANDARD = "2",
-  THIRD_STANDARD = "3",
-  FOURTH_STANDARD = "4",
-  FIFTH_STANDARD = "5",
-  SIXTH_STANDARD = "6",
-  SEVENTH_STANDARD = "7",
-  EIGHTH_STANDARD = "8",
-  NINTH_STANDARD = "9",
-  TENTH_STANDARD = "10",
-  ELEVENTH_STANDARD = "11",
-  TWELFTH_STANDARD = "12",
-}
 
 interface ClassListProps {
   selectedSyllabus: string;

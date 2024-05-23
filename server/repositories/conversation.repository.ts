@@ -17,6 +17,8 @@ class ConversationRepository {
       throw new Error(`Failed to create conversation: ${error}`);
     }
   }
+
+  
   async createNewCommunity(
     teacherId: string,
     course_title: string,

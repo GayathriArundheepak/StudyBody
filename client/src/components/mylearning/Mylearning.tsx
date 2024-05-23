@@ -7,31 +7,10 @@ import { UserSliceState } from "../../redux/user/UserSlice";
 import { useSelector } from "react-redux";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-
-interface Course {
-  standard: string;
-  syllabus: string;
-  _id: string;
-  subject: string;
-  description: string;
-  attendance: any[]; // Adjust the type according to your data structure
-  students_list: string[];
-  commission: number;
-  prize: number;
-  slot: {
-    day: string[];
-    time: string;
-    isWeekend: boolean;
-  };
-  promotion_video: string;
-  isAvailable: boolean;
-  block: boolean;
-  review: any[]; // Adjust the type according to your data structure
-  adminApproved: boolean;
-}
+import ICourse from "../../interface/course/Course";
 
 const MyLearning: React.FC = () => {
-  const [courses, setCourses] = useState<Course[]>([]);
+  const [courses, setCourses] = useState<ICourse[]>([]);
   const navigate = useNavigate();
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user

@@ -79,6 +79,8 @@ io.on("connection",(socket)=>{
     
         io.emit("getGroup", groups);
     })
+
+
       //when disconnect
   socket.on("disconnect", () => {
     console.log("a user disconnected!");
@@ -87,17 +89,6 @@ io.on("connection",(socket)=>{
     io.emit("getUsers", users);
     io.emit("getGroups", groups);
   });
-    //send and get message
-    // socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-    //     console.log(senderId,receiverId,text)
-    //     const user = getUser(receiverId);
-    //     if(user){
-    //         io.to(user.socketId).emit("getMessage", {
-    //           senderId,
-    //           text,
-    //         });
-    //     }
-    //   });
 
     socket.on("sendMessage", ({ senderId, receiverId, groupId, text, isGroup }) => {
   

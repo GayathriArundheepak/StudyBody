@@ -5,35 +5,21 @@ import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import api from "../../axios/api";
-interface MessageData {
-  conversationId: string;
-  sender: string;
-  text: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import IMessageData from "../../interface/messanger/MessageData";
+import IUser from "../../interface/user/User";
+
 
 interface MessageProps {
-  message: MessageData | null; // Change the type to MessageData | null
+  message: IMessageData | null; // Change the type to IMessageData | null
   own: boolean;
 }
 
-interface User {
-  profilePic?: string | null;
-  username?: string;
-  email: string;
-  password?: string;
-  newPassword?: string;
-  gender?: string;
-  date_of_birth?: Date;
-  userType?: string;
-  wishlist?: string[];
-}
 const Message: React.FC<MessageProps> = ({ message, own }) => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [isTeacher, setIsTeacher] = useState<boolean>(false);
   const id = message?.sender;
   useEffect(() => {
     const getUser = async () => {
@@ -41,21 +27,31 @@ const Message: React.FC<MessageProps> = ({ message, own }) => {
       try {
         const res = await api.get(`/api/student/${id}`);
         setUser(res.data.data);
-        console.log("user:", user);
-      } catch (error) {
-        console.log(error);
+        console.log("user:", res.data.data);
+        setIsTeacher(false)
+      } catch (studentError) {
+        console.log("Student fetch failed, trying teacher endpoint:", studentError);
+        try {
+          const teacherRes = await api.get(`/api/teacher/${id}`);
+          setUser(teacherRes.data.data);
+          setIsTeacher(true)
+          console.log("teacher:", teacherRes.data.data);
+        } catch (teacherError) {
+          console.log("Teacher fetch failed as well:", teacherError);
+        }
       }
     };
+
     if (!own) {
       getUser();
     }
-  }, [id]);
+  }, [id, own]);
   const defaultProfilePic =
-    "https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAxL3JtNjA5LXNvbGlkaWNvbi13LTAwMi1wLnBuZw.png";
+    "/images/DefaultProfilePic.webp";
   const profilePic = own
     ? currentUser?.profilePic || defaultProfilePic
     : user?.profilePic || defaultProfilePic;
-  const username = !own && (user?.username || "Teacher");
+  const username = !own && (user?.username );
 
   return (
     <div className={own ? "message own" : "message"}>
@@ -70,7 +66,8 @@ const Message: React.FC<MessageProps> = ({ message, own }) => {
           </>
         ) : (
           <>
-            <p className="username">{username}</p>
+            <p className="username">{username}</p> <br />
+           { isTeacher && <span className="isTeacher">(Teacher)</span>}
             {profilePic && (
               <img className="messageImg" src={profilePic} alt="profile pic" />
             )}
