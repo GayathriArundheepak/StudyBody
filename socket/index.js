@@ -1,8 +1,18 @@
-const io = require("socket.io")(8900,{
-    cors:{
-          origin:"http://localhost:3000"
+// const io = require("socket.io")(8900,{
+//     cors:{
+//           origin:"http://localhost:3000"
+//     }
+// });
+
+const serverPort = process.env.SERVER_PORT ;
+const clientPort = process.env.CLIENT_PORT ;
+
+const io = require("socket.io")(serverPort, {
+    cors: {
+        origin: `http://localhost:${clientPort}`
     }
 });
+
 let users =[];
 let groups =[];
 console.log('users:',users);

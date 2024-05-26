@@ -151,7 +151,7 @@ const Profile: React.FC = () => {
             )}
           </Formik>
         </div>
-        <div className="footer-home">
+        <div className="footer-profile">
         <Footer />
       </div>
       </div>

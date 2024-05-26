@@ -1,5 +1,6 @@
 // Your main SASS file
 @import "../../config/color.scss"; // Import color variables
+@import '../../config/responsive.scss';
 
 .profile {
   width: 100%;
@@ -146,11 +147,47 @@
       display: none;
     }
   }
-  .footer-home {
+  .footer-profile {
+    flex-shrink: 0;
+    width: 100%;
     background-color: #24262b;
-    position: absolute;
-    top: 600px;
-    left: 0;
-    right: 0;
+    margin-top: 800px;
+
+    
+  }
+  @include sm {
+    .footer-profile {
+      flex-shrink: 0;
+      background-color: #24262b;
+      margin-top: 800px;
+      min-width:500px;
+      
+    }
+  }
+  @include md {
+    .footer-profile {
+      flex-shrink: 0;
+      width: 100%;
+      background-color: #24262b;
+      margin-top: 1000px;
+      min-width:1000px;
+      
+    }
+  }
+
+  @include lg {
+    .footer-profile {
+      flex-shrink: 0;
+      width: 100%;
+      background-color: #24262b;
+      margin-top: 800px;
+      min-width:1300px;
+      
+    }
   }
 }
+$sm: 480px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1200px;
+$xxl: 1400px;

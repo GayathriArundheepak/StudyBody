@@ -9,11 +9,11 @@
   grid-auto-flow: dense;
 
   @include xl {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   @include lg {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   @include md {

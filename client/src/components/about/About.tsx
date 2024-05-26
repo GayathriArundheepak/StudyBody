@@ -16,9 +16,7 @@ const About: React.FC = () => {
             we are committed to transforming the educational experience by providing a comprehensive and engaging learning
              platform tailored to the unique needs of each student. Our innovative approach combines live classes, interactive
               lessons, and a vast array of study materials to ensure that students not only excel academically but also develop a
-               lifelong love for learning. With a focus on personalized education, our platform adapts to the pace and style of
-                every learner, fostering an environment where students can thrive and achieve their full potential. 
-            Join us at StudyBudy and embark on a journey of academic excellence and personal growth.
+               lifelong love for learning.Join us at StudyBudy and embark on a journey of academic excellence and personal growth.
             </p>
           </div>
         </div>

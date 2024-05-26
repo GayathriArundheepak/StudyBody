@@ -4,11 +4,13 @@ import dotenv from "dotenv";
 import { HttpStatus } from "../enums/HttpStatus.enum";
 import StudentRepository from "../repositories/student.repository";
 dotenv.config();
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-const stripe = new Stripe(
-  "sk_test_51OsGMhSGNsnSSQRQMv4vd0v249LMbQZPgwKcDEJdawgWyRmZ33sX8Gv7OGoVzopPmaYpudvXZMruoPix36EIisSc00Ale5YqA2",
-  {}
-);
+if (!stripeSecretKey) {
+  throw new Error('Stripe secret key is not defined in environment variables.');
+}
+
+const stripe = new Stripe(stripeSecretKey, {});
 
 class StripePayments {
   private studentRepository: StudentRepository;
