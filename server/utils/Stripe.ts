@@ -4,13 +4,9 @@ import dotenv from "dotenv";
 import { HttpStatus } from "../enums/HttpStatus.enum";
 import StudentRepository from "../repositories/student.repository";
 dotenv.config();
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
-if (!stripeSecretKey) {
-  throw new Error('Stripe secret key is not defined in environment variables.');
-}
-
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY!; // Add the ! operator to assert that it's not undefined
 const stripe = new Stripe(stripeSecretKey, {});
+
 
 class StripePayments {
   private studentRepository: StudentRepository;
