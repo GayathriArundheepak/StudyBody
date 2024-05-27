@@ -8,7 +8,7 @@ console.log('no error1')
 const createServer=()=>{
   console.log('no error2')
 const app=express();
-console.log('no error')
+console.log('no error3')
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
      // Use cookie-parser middleware

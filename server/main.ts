@@ -1,5 +1,6 @@
-import createServer from "./config/server";
+console.log('start')
 import connectedDB from "./config/db";
+import createServer from "./config/server";
 import authRouter from "./routes/auth.route";
 import adminRouter from "./routes/admin.route";
 import studentRouter from "./routes/student.route";
