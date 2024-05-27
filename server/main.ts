@@ -26,7 +26,7 @@ app.use("/api/admin", adminRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/conversations", conversationRouter);
 app.use("/api/messages", messageRoute);
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`), connectedDB();
 });
