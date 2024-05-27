@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
+console.log('no error')
 dotenv.config();
 console.log('no error1')
 // Define __filename and __dirname for ES6 modules
