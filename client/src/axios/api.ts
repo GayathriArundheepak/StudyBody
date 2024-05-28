@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // Create an Axios instance with default settings
 const instance = axios.create({
-  baseURL: 'http://localhost:8080', // Set your base URL here
+  // baseURL: 'http://localhost:8080', // Set your base URL here
+  baseURL: 'http://13.233.66.221:5000', // Set your base URL here
   withCredentials: true, // Include cookies in requests
   headers: {
     'Content-Type': 'application/json', // Set default Content-Type header

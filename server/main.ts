@@ -16,6 +16,7 @@ import orderRouter from "./routes/order.route";
 dotenv.config();
 const app = createServer();
 app.use(express.static("public"));
+
 app.use("/api/auth", authRouter);
 app.use("/api/student", studentRouter);
 app.use("/api/teacher", teacherRouter);

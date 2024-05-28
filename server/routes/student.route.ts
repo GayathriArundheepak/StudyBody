@@ -42,5 +42,8 @@ studentRouter.get(
     await studentController.getUsers(req, res);
   }
 );
+studentRouter.get('/',  async (req: Request, res: Response) => {
+  res.send("Lets rock & roll");
+} )
 
 export default studentRouter;
