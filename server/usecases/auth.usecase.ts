@@ -113,7 +113,7 @@ class authUsecase implements IAuthUsecaseInterface {
       // Create a transporter
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 25,
+        port: 587,
         secure: false,
         requireTLS: true,
         auth: {
