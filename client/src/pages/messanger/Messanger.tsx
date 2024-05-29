@@ -37,7 +37,8 @@ const Messanger: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   console.log("socket", socket);
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    // socket.current = io("ws://localhost:8900");
+    socket.current = io("ws:43.205.115.45:8900");
     socket.current.on("getMessage", (data) => {
       console.log("data:", data);
       if (currentChat?.isGroup) {
