@@ -51,7 +51,7 @@ const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
   const renderProfilePic = () => {
     if (conversation.conversationName) {
       // Display group chat icon
-      return "https://t3.ftcdn.net/jpg/07/14/57/10/360_F_714571052_6cbdJRbvbZVrqqJ9ujvPOMAfunjd92bH.jpg";
+      return "/images/groupicon.jpg";
     } else if (user && user.profilePic) {
       return user.profilePic; // Display friend's profile picture for one-on-one chat
     } else {

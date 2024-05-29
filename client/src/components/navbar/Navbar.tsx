@@ -24,9 +24,12 @@ const Navbar: React.FC = () => {
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
   const courses = useSelector((state: RootState) => state.course.courses);
+  if( currentUser?.profilePic === ''){
+    const profilePicSrc ="/images/DefaultProfilePic.jpg"
+  }
   const profilePicSrc = currentUser?.profilePic 
     ? currentUser.profilePic
-    : "/images/DefaultProfilePic.webp";
+    : "/images/DefaultProfilePic.jpg";
   const dispatch = useDispatch();
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const navigate = useNavigate();

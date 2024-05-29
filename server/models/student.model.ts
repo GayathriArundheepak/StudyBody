@@ -5,7 +5,6 @@ const StudentSchema: Schema = new Schema({
   profilePic: {
      type: String, 
  
-     default:"/images/Avadar.jpg"
      },
  
   wishlist: [{ 

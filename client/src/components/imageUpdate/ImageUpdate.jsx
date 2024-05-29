@@ -65,12 +65,16 @@ function ImageUpdate({ formData, setFormData }) {
     setFile(null);
     setShowButtons(false);
   };
+  const defaultProfilePic = "/images/DefaultProfilePic.jpg";
+
+  const profilePicSrc = (currentUser?.profilePic?.trim() !== '' ? currentUser.profilePic : defaultProfilePic);
+
 
   return (
     <div>
       <label htmlFor="file-input">
         <img
-          src={imageUrl ? imageUrl : currentUser.profilePic}
+          src={imageUrl ? imageUrl : profilePicSrc}
           alt="S3 Image"
         />
       </label>
