@@ -8,7 +8,7 @@ interface RootState {
     userType: string;
   };
 }
-
+console.log('*')
 const StudentRoute: React.FC = () => {
   // Use RootState interface with useSelector hook
   const { userType } = useSelector((state: RootState) => state.user);
