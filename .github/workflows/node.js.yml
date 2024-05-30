@@ -1,5 +1,4 @@
 name: Node.js CI for Client
-
 on:
   push:
     branches: [ "main" ]
