@@ -10,6 +10,7 @@ interface RootState {
 const StudentRoute: React.FC = () => {
   // Use RootState interface with useSelector hook
   const { userType } = useSelector((state: RootState) => state.user);
+  
   // Return the appropriate JSX based on user type
   return userType === 'student' ? <Outlet /> : <Navigate to="/signin" />;
 };
