@@ -62,7 +62,8 @@ const Messanger: React.FC = () => {
         socket.current.disconnect();
         socket.current = null;
       }
-    };},[currentUser]);
+    }
+  },[currentUser?._id]);
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
