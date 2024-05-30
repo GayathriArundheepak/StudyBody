@@ -1,9 +1,7 @@
-import React, { useRef } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import "./Home.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
-import Banner from "../../components/banner/Banner";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import AdminDashboard from "../../components/adminDashboard/AdminDshboard";
