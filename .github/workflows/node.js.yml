@@ -1,20 +1,22 @@
-name: Node.js CI
+name: Node.js CI for Client
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-client:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
+        node-version: '14'  # Specify the Node.js version if needed
         cache: 'npm'
-    - run: npm ci
+    - name: Install dependencies
+      run: npm ci --prefix client
     - name: Build React app
-      run: npm run build
+      run: npm run build --prefix client
     
     - name: Sync client to hosting bucket
       run: aws s3 sync client/build/ s3://studybuddy-react-host --delete  # Sync only client folder to the hosting bucket
@@ -22,4 +24,3 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}  # Use the region stored in secrets
-
