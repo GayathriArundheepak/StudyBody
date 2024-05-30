@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Cart.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import axios from "axios";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import { useNavigate } from "react-router-dom";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -24,6 +23,25 @@ function Cart(): JSX.Element {
   const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>(
     {}
   );
+
+  const fetchTeacherName = async (teacherId: string) => {
+    if (teacherNames[teacherId]) {
+      return; // Already fetched
+    }
+    try {
+      const response = await api.get(`/api/teacher/${teacherId}`);
+      setTeacherNames((prevState) => ({
+        ...prevState,
+        [teacherId]: response.data.data.username,
+      }));
+    } catch (error) {
+      console.error(`Error fetching teacher with id ${teacherId}:`, error);
+      setTeacherNames((prevState) => ({
+        ...prevState,
+        [teacherId]: "Unknown",
+      }));
+    }
+  };
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -52,14 +70,14 @@ function Cart(): JSX.Element {
    
     }
   }, [currentUser, navigate]);
+  
   useEffect(() => {
     courses.forEach(course => {
-      if (course.teacher_id) {
-        fetchTeacherName(course.teacher_id);
-      }
+        if (course.teacher_id) {
+            fetchTeacherName(course.teacher_id);
+        }
     });
-  }, [courses]);
-
+}, [courses, fetchTeacherName]); // Include fetchTeacherName in the dependency array
 
   const handleCheckout = async () => {
     try {
@@ -128,28 +146,7 @@ function Cart(): JSX.Element {
       navigate("/signin");
     }
   };
-  const handleBack = () => {
-    // Use navigate with -1 to go back to the previous page
-    navigate(-1);
-  };
-  const fetchTeacherName = async (teacherId: string) => {
-    if (teacherNames[teacherId]) {
-      return; // Already fetched
-    }
-    try {
-      const response = await api.get(`/api/teacher/${teacherId}`);
-      setTeacherNames((prevState) => ({
-        ...prevState,
-        [teacherId]: response.data.data.username,
-      }));
-    } catch (error) {
-      console.error(`Error fetching teacher with id ${teacherId}:`, error);
-      setTeacherNames((prevState) => ({
-        ...prevState,
-        [teacherId]: "Unknown",
-      }));
-    }
-  };
+
   return (
     <div className="cart">
       <Navbar />

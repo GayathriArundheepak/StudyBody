@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import { RootState } from "../../redux/store";
 import "./Navbar.scss";
 import ShoppingCartOutlined from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteSharpIcon from "@mui/icons-material/FavoriteSharp";
-import SignOut from "../signOut/SignOut";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 import api from "../../axios/api";
 import Search from "../search/Search";
@@ -23,15 +22,12 @@ const Navbar: React.FC = () => {
   );
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
-  const courses = useSelector((state: RootState) => state.course.courses);
-  if( currentUser?.profilePic === ''){
-    const profilePicSrc ="/images/DefaultProfilePic.jpg"
-  }
   const profilePicSrc = currentUser?.profilePic 
-    ? currentUser.profilePic
+    ? currentUser?.profilePic
     : "/images/DefaultProfilePic.jpg";
   const dispatch = useDispatch();
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  console.log(searchResults)
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   // Construct the profile link based on the user's type

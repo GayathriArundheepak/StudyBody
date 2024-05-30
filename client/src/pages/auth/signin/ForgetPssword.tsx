@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./Signin.scss";
-import axios, { AxiosResponse, AxiosError } from "axios";
+import {AxiosResponse} from "axios";
 import api from "../../../axios/api";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";

@@ -4,19 +4,19 @@ import "./UserList.scss"; // Import the shared Sass file
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/navbar/Navbar";
 import IUser from "../../../interface/user/User"
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-  otpApproved: boolean;
-  mylearnings?: string;
-  gender: string;
-  date_of_birth?: string;
-  rating?: number;
-  qualifications?: string;
-  block: boolean;
-  adminApproved: boolean;
-}
+// interface User {
+//   _id: string;
+//   username: string;
+//   email: string;
+//   otpApproved: boolean;
+//   mylearnings?: string;
+//   gender: string;
+//   date_of_birth?: string;
+//   rating?: number;
+//   qualifications?: string;
+//   block: boolean;
+//   adminApproved: boolean;
+// }
 
 interface UserListProps {
   userType: "student" | "teacher";
@@ -118,9 +118,6 @@ function UserList({ userType }: UserListProps) {
     } catch (error) {
       console.error(`Error unblocking ${userType}:`, error);
     }
-  };
-  const handleBack = () => {
-    navigate(-1);
   };
 
   return (

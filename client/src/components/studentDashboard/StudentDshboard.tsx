@@ -1,22 +1,16 @@
-import BarChartBox from "../barChartBox/BarChartBox";
-import TopBox from "../topBox/TopBox";
-import "./StudentDashboard.scss";
-import Stack from "@mui/material/Stack";
-import { Gauge } from "@mui/x-charts/Gauge";
-import LineChatBox from "../lineChartBox/LineChatBox";
-import Banner from "../banner/Banner";
-import ClassList from "../courseList/ClassList";
-import { useRef, useState } from "react";
-import About from "../about/About";
 
+import "./StudentDashboard.scss";
+import Banner from "../banner/Banner";
+import { useRef} from "react";
+import About from "../about/About";
 const StudentDashboard = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
 
-  const scrollToAbout = () => {
-    if (aboutRef.current) {
-      aboutRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  // const scrollToAbout = () => {
+  //   if (aboutRef.current) {
+  //     aboutRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // };
 
   return (
     <div className="studentDashboard">

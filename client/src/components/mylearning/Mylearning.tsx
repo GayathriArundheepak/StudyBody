@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import api from "../../axios/api";
 import "./Mylearning.scss";
 import { RootState } from "../../redux/store";
@@ -32,7 +32,7 @@ const MyLearning: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [studentId]);
 
   const handleStartLearning = (courseId: string) => {
     navigate(`/materials/${courseId}`);

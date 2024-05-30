@@ -3,13 +3,13 @@ import React, { useEffect } from 'react';
 import './Success.scss';
 import CheckSharpIcon from '@mui/icons-material/CheckSharp';
 import api from '../../axios/api';
-import { Link, useMatch, useParams } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 
 
 
 const Success: React.FC= () => {
   const { orderId } = useParams<{ orderId: string }>();
-  const match = useMatch('/successd/:orderId');
+  // const match = useMatch('/successd/:orderId');
   const updateCourseStudentsList = (courseId:string, studentId:string) => { // Accept courseId and studentId as parameters
     return api
       .post('api/course/update-course-students-list', { courseId, studentId }) // Pass courseId and studentId in the request body

@@ -1,7 +1,6 @@
 import { Formik, Form, Field, ErrorMessage, FormikProps } from "formik";
 import * as Yup from "yup";
 import React, { useState } from "react";
-import axios from "axios";
 import Select from "react-select";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -26,7 +25,7 @@ const CreateCourseForm: React.FC = () => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
-  const [selectedDays, setSelectedDays] = useState([]);
+  // const [selectedDays, setSelectedDays] = useState([]);
   const id = currentUser?._id;
   const [videoUrl, setVideoUrl] = useState("");
   const [subjects, setSubjects] = useState<string[]>([]);
@@ -63,6 +62,10 @@ const CreateCourseForm: React.FC = () => {
       toast.error("Please select both syllabus and standard");
     }
   };
+
+  function setSelectedDays(selectedOptions: any) {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <div className="form">

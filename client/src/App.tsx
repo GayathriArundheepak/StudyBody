@@ -1,11 +1,8 @@
-import React from "react"; // Import React
-
 import "./App.scss";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useParams,
 } from "react-router-dom";
 
 import Signup from "./pages/auth/signup/Signup";

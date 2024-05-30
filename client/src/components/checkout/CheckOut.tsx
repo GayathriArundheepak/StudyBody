@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CheckOut.scss";
 import api from '../../axios/api';
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import makePayment from "../paymentComponent/MakePayment";
 import Course from "../../interface/course/Course";
 import { useSelector } from "react-redux";
@@ -11,7 +11,6 @@ import Navbar from "../navbar/Navbar";
 
 const Checkout: React.FC = () => {
   const navigate = useNavigate();
-  const match = useMatch("/checkout/:orderId");
   const [cartItems, setCartItems] = useState<Course[]>([]);
   const { orderId } = useParams<{ orderId: string }>();
   const currentUser = useSelector((state: RootState) => state.user.currentUser);

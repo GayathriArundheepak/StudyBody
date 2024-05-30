@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./CourseList.scss";
 import { ToastContainer, toast } from "react-toastify";
 import api from "../../../../axios/api";
-import { FormikProps } from "formik";
 import { Syllabus } from "../../../../enum/SyllabusEnums";
 import Navbar from "../../../../components/navbar/Navbar";
 import ICourse from '../../../../interface/course/Course'

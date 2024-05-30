@@ -1,27 +1,24 @@
 import { Formik, Form, Field, ErrorMessage, FormikProps } from "formik";
 import * as Yup from "yup";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Select from "react-select";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { UserSliceState } from "../../redux/user/UserSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
 import VideoUpload from "../videoUpload/VideoUpload";
 import api from "../../axios/api";
 import Course from "../../interface/course/Course";
 
-const days = [
-  { label: "Monday", value: "monday" },
-  { label: "Tuesday", value: "tuesday" },
-  { label: "Wednesday", value: "wednesday" },
-  { label: "Thursday", value: "thursday" },
-  { label: "Friday", value: "friday" },
-  { label: "Saturday", value: "saturday" },
-  { label: "Sunday", value: "sunday", disabled: true },
-];
+// const days = [
+//   { label: "Monday", value: "monday" },
+//   { label: "Tuesday", value: "tuesday" },
+//   { label: "Wednesday", value: "wednesday" },
+//   { label: "Thursday", value: "thursday" },
+//   { label: "Friday", value: "friday" },
+//   { label: "Saturday", value: "saturday" },
+//   { label: "Sunday", value: "sunday", disabled: true },
+// ];
 
 interface EditCourseFormProps {
   courseId: string;
@@ -31,7 +28,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({ courseId }) => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
-  const [selectedDays, setSelectedDays] = useState([]);
+  // const [selectedDays, setSelectedDays] = useState([]);
 
   const id = currentUser?._id;
   const [videoUrl, setVideoUrl] = useState("");

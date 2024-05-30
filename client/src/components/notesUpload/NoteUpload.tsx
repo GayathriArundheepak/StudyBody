@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useEffect } from "react";
+import React, { useState, ChangeEvent } from "react";
 import AWS from "aws-sdk";
 import './NoteUpload.scss'
 interface NoteUploadProps {

@@ -17,8 +17,6 @@ const Conversation: React.FC<ConversationProps> = ({ conversation }) => {
   const { currentUser }: UserSliceState = useSelector(
     (state: RootState) => state.user
   );
-  const userType: string =
-    useSelector((state: RootState) => state.user.userType) || "student";
   const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {

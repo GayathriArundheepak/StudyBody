@@ -7,7 +7,6 @@ import { RootState } from "../../redux/store";
 import AdminDashboard from "../../components/adminDashboard/AdminDshboard";
 import TeachersDashboard from "../../components/teachersDashboard/TeachersDashboard";
 import StudentDashboard from "../../components/studentDashboard/StudentDshboard";
-// import About from '../../components/about/About'
 
 function Home() {
   const { currentUser, loading } = useSelector((state: RootState) => state.user);

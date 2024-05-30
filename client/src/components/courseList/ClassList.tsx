@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector
 import {
   fetchCoursesStart,
@@ -20,7 +20,6 @@ const ClassList: React.FC<ClassListProps> = ({ selectedSyllabus }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState<boolean>(false);
-  const courses = useSelector((state: RootState) => state.course.courses);
   const handleClickSubjects = (standard: ClassStandard) => {
     setLoading(true);
     dispatch(fetchCoursesStart());

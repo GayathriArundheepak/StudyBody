@@ -4,7 +4,6 @@ import api from "../../axios/api";
 import { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { UserSliceState } from "../../redux/user/UserSlice";
-import Success from "../success/Success";
 import { io, Socket } from "socket.io-client";
 import IConversation from "../../interface/messanger/Conversation";
 import IFriend from "../../interface/messanger/Friend";
@@ -26,8 +25,6 @@ function ChatOnline({
     (state: RootState) => state.user
   );
     const socket = useRef<Socket | null>(null);
-  const userType: string =
-    useSelector((state: RootState) => state.user.userType) || "student";
   const currentId = currentUser?._id;
   const [friends, setFriends] = useState<IFriend[]>([]);
   const [onlineFriends, setOnlineFriends] = useState<IFriend[]>([]);

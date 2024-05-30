@@ -73,10 +73,10 @@ function ImageUpdate({ formData, setFormData }) {
   return (
     <div>
       <label htmlFor="file-input">
-        <img
-          src={imageUrl ? imageUrl : profilePicSrc}
-          alt="S3 Image"
-        />
+      <img
+      src={imageUrl ? imageUrl : profilePicSrc}
+      alt={imageUrl ? "User profile picture" : "Default profile picture"}
+    />
       </label>
       <input
         id="file-input"

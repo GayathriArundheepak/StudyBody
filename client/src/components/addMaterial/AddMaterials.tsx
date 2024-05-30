@@ -9,7 +9,7 @@ import { UserSliceState } from "../../redux/user/UserSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VideoUpload from "../videoUpload/VideoUpload";
-import { useNavigate, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import NoteUpload from "../notesUpload/NoteUpload";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
@@ -19,7 +19,6 @@ const AddMaterials = () => {
     (state: RootState) => state.user
   );
   const teacherId = currentUser?._id;
-  const navigate = useNavigate();
   const { courseId } = useParams<{ courseId: string }>();
   console.log(courseId);
   const [note, setNote] = useState("");

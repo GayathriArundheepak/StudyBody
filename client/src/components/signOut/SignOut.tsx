@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import './SignOut.scss'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +10,6 @@ interface SignOutProps {}
 const SignOut: React.FC<SignOutProps> = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { currentUser, loading } = useSelector((state: RootState) => state.user);
   const userType: string = useSelector((state: RootState) => state.user.userType) || 'student';
   console.log(userType)
   const handleSignOut = async () => {

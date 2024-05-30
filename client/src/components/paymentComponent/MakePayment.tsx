@@ -20,7 +20,7 @@ console.log(body)
     console.log(response.data)
     const sessionId = response.data.id;
     // Redirect to checkout session using the session ID
-    const result = await stripe?.redirectToCheckout({ sessionId: sessionId });
+    await stripe?.redirectToCheckout({ sessionId: sessionId });
   } catch (error) {
     console.error('Error creating checkout session:', error);
   }

@@ -1,12 +1,10 @@
 import BarChartBox from '../barChartBox/BarChartBox';
 import LineChatBox from '../lineChartBox/LineChatBox';
-import PieAnimation from '../pieChartBox/PieChartBox';
-import PieChartBox from '../pieChartBox/PieChartBox';
 import TopBox from '../topBox/TopBox';
 import './TeachersDashboard.scss';
 import Stack from '@mui/material/Stack';
 import { Gauge } from '@mui/x-charts/Gauge';
-import { LineChart } from '@mui/x-charts/LineChart';
+
 
 const TeachersDashboard =() => {
   return (

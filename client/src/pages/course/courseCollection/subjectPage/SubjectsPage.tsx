@@ -5,7 +5,6 @@ import { RootState } from "../../../../redux/store";
 import Icons from "../../../../components/icons/Icons";
 import ICourse from "../../../../interface/course/Course";
 import VideoPreview from "../../../../components/videoPreview/VideoPreview";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../../../../components/navbar/Navbar";
 import api from '../../../../axios/api';
 import { UserSliceState } from "../../../../redux/user/UserSlice";
@@ -15,7 +14,6 @@ function SubjectsPage(): JSX.Element {
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>({});
   const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
-  const navigate = useNavigate();
   const courses: ICourse[] = useSelector(
     (state: RootState) => state.course.courses
   ) as unknown as ICourse[]; // No need for type assertion
@@ -44,7 +42,7 @@ function SubjectsPage(): JSX.Element {
         fetchTeacherName(course.teacher_id);
       }
     });
-  }, [courses]);
+  }, [courses,fetchTeacherName]);
 
   const handleRowClick = (index: number) => {
     const selectedIndex = selectedRows.indexOf(index);
@@ -88,7 +86,7 @@ function SubjectsPage(): JSX.Element {
                 <div className="card-content">
                   <h3>{course.subject} <h6>({course.standard} - {course.syllabus})</h6> </h3>
                   <p>{course.teacher_id ? teacherNames[course.teacher_id] || "Loading..." : "Unknown"}</p>
-                  <h3>{course.course_title} <h6></h6></h3>
+                  <h3>{course.course_title}</h3>
                   <p>
                     <strong>Price:</strong> {course.prize}
                   </p>

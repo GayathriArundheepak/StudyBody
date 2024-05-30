@@ -9,7 +9,6 @@ import ChatOnline from "../chatOnline/ChatOnline";
 import { Socket } from "socket.io-client";
 import IFriend from "../../interface/messanger/Friend";
 import IConversation from "../../interface/messanger/Conversation";
-import IOnlineUser from "../../interface/messanger/OnlineUser";
 
 interface CommunityProps {
   setCurrentChat: (chat: IConversation | null) => void;
@@ -30,10 +29,7 @@ const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
     IFriend[]
   >([]);
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
-  const socket = useRef<Socket | null>(null);
-  // const [onlineUsers, setOnlineUsers] = useState([]);
-  const scrollRef = useRef();
-  // const [currentChat, setCurrentChat] = useState(null);
+  // const scrollRef = useRef();
   useEffect(() => {
     const fetchMyLearningDetails = async () => {
       try {
@@ -72,7 +68,7 @@ if(userType === 'student'){
 }else if (userType === 'teacher'){
   fetchMyLearningDetails();
 }
-  }, []);
+  }, [currentUser?._id, myLearningIds, myLearnings,userType]);
 
   const handleCourseClick = async (courseId: string) => {
     if (selectedCourseId === courseId) {

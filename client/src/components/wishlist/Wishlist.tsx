@@ -1,4 +1,3 @@
-import  RemoveShoppingCartOutlinedIcon  from '@mui/icons-material/RemoveShoppingCartOutlined';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import React, { useState, useEffect } from 'react';
 import './Wishlist.scss';
@@ -16,6 +15,7 @@ function Wishlist(): JSX.Element {
   const [wishlistCourses, setWishlistCourses] = useState<ICourse[]>([]);
   const { currentUser }: UserSliceState = useSelector((state: RootState) => state.user);
   const [cartAdded, setCartAdded] = useState<boolean>(false);
+  console.log(cartAdded)
   const [teacherNames, setTeacherNames] = useState<{ [key: string]: string }>({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
