@@ -15,7 +15,7 @@ import ApprovalOtp from "./pages/auth/signup/ApprovalOtp";
 import UserList from "./pages/admin/userManagement/UserList";
 import Home from "./pages/home/Home";
 import SignOut from "./components/signOut/SignOut";
-import StudentRoute from "./components/privateRoutes/";
+import StudentRoute from "./components/privateRoutes/StudentRoute";
 import TeacherRoute from "./components/privateRoutes/TeacherRoute";
 import AuthRoute from "./components/privateRoutes/AuthRoute";
 import AdminRoute from "./components/privateRoutes/AdminRoute";
