@@ -9,52 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         cache: 'npm'
-    
-    - name: Install client dependencies
-      run: npm ci
-      working-directory: ./client  # Assuming your client code is in the 'client' directory
-    
+    - run: npm ci
     - name: Build React app
       run: npm run build
-      working-directory: ./client
     
-    - name: Sync to hosting bucket
-      run: aws s3 sync ./client/build/ s3://studybuddy-react-host --delete
+    - name: Sync client to hosting bucket
+      run: aws s3 sync client/build/ s3://studybuddy-react-host --delete  # Sync only client folder to the hosting bucket
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+        AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}  # Use the region stored in secrets
 
-  deploy-server:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Copy server files to EC2
-      run: scp -r ./server ubuntu@your-ec2-ip-address:/path/to/destination
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-
-    - name: Install server dependencies
-      run: ssh ubuntu@your-ec2-ip-address 'cd /path/to/destination && npm ci'
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-
-    - name: Restart server
-      run: ssh ubuntu@your-ec2-ip-address 'sudo systemctl restart your-server-service'
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
