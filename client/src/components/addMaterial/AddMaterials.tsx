@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import VideoUpload from "../videoUpload/VideoUpload";
 import { useNavigate, useParams } from "react-router-dom";
+import NoteUpload from "../noteUpload/NoteUpload";
 import Navbar from "../navbar/Navbar";
 import Sidebar from "../sidebar/Sidebar";
 
