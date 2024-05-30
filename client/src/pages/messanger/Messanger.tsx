@@ -11,7 +11,7 @@ import {
 import { RootState } from "../../redux/store";
 import { useEffect, useRef, useState } from "react";
 import api from "../../axios/api";
-import Community from "../../components/community/Community";
+import Community from "../../components/community/community";
 import { io, Socket } from "socket.io-client";
 import IConversation from "../../interface/messanger/Conversation";
 import IMessageData from "../../interface/messanger/MessageData";
