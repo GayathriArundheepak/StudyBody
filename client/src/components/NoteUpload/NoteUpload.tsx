@@ -8,8 +8,7 @@ interface NoteUploadProps {
 function NoteUpload({ onNoteUrlChange }: NoteUploadProps) {
   const [file, setFile] = useState<File | null>(null);
   const [showButtons, setShowButtons] = useState(false);
-
-
+  
   const uploadNote = async () => {
     if (!file) {
       console.error("No file selected");
