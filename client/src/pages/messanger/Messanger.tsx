@@ -63,7 +63,7 @@ const Messanger: React.FC = () => {
         socket.current = null;
       }
     }
-  },[currentUser?._id]);
+  },[currentUser,currentChat?.isGroup]);
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
