@@ -7,12 +7,17 @@ on:
 jobs:
   build-and-deploy-client:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [15.x]
+
     steps:
     - uses: actions/checkout@v3
     - name: Install dependencies
       run: npm ci --prefix client --force
     - name: Build React app
-      run: npm ci --prefix client --legacy-peer-deps
+      run: npm run build --prefix client
     
     - name: Sync client to hosting bucket
       run: aws s3 sync client/build/ s3://studybuddy-react-host --delete  # Sync only client folder to the hosting bucket
