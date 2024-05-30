@@ -109,7 +109,7 @@ class authUsecase implements IAuthUsecaseInterface {
       const email = body.email;
       console.log(email);
       const otp: string = `${Math.floor(1000 + Math.random() * 9000)}`;
-
+      
       // Create a transporter
       const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
