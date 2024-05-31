@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Cart.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -24,7 +24,7 @@ function Cart(): JSX.Element {
     {}
   );
 
-    const fetchTeacherName = async (teacherId: string) => {
+  const fetchTeacherName = useCallback(async (teacherId: string) => {
     if (teacherNames[teacherId]) {
       return; // Already fetched
     }
@@ -41,7 +41,8 @@ function Cart(): JSX.Element {
         [teacherId]: "Unknown",
       }));
     }
-  };
+  }, [teacherNames]);
+
   useEffect(() => {
     const fetchCartItems = async () => {
       try {
@@ -67,17 +68,16 @@ function Cart(): JSX.Element {
       navigate("/signin");
     } else {
       fetchCartItems();
-   
     }
   }, [currentUser, navigate]);
-  
+
   useEffect(() => {
     courses.forEach(course => {
-        if (course.teacher_id) {
-            fetchTeacherName(course.teacher_id);
-        }
+      if (course.teacher_id) {
+        fetchTeacherName(course.teacher_id);
+      }
     });
-}, [courses, fetchTeacherName]); // Include fetchTeacherName in the dependency array
+  }, [courses, fetchTeacherName]);
 
   const handleCheckout = async () => {
     try {
@@ -151,14 +151,12 @@ function Cart(): JSX.Element {
     <div className="cart">
       <Navbar />
       <ToastContainer />
-      {/* <button onClick={handleBack}>back</button> */}
       <div className="cart-container">
         <h1> CART</h1>
         {loading ? (
           <div>Loading...</div>
         ) : cartItems && cartItems.length > 0 ? (
           <div className="cart-table">
-    
             {cartItems.map((course) => (
               <div key={course._id} className="cart-item">
                 <div className="cell">
@@ -189,4 +187,5 @@ function Cart(): JSX.Element {
     </div>
   );
 }
+
 export default Cart;

@@ -14,7 +14,7 @@ const TopBox = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
 
-  const fetchCourses = async (userId: string) => {
+  const fetchCourses = useCallback(async (userId: string) => {
     try {
       const response = await api.get<CourseResponse>(`/api/course/teachers_coursesList/${userId}`);
       let amount = 0;
@@ -30,7 +30,7 @@ const TopBox = () => {
       console.error('Error fetching courses:', error);
       return 0;
     }
-  };
+  }, []);
 
   const fetchData = useCallback(async () => {
     try {
