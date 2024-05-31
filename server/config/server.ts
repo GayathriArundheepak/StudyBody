@@ -15,7 +15,8 @@ app.use(express.json());
       app.use(cookieParser());
      // Enable CORS middleware
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from this origin
+    origin: 'https://studybuddy-react-host.s3.ap-south-1.amazonaws.com/', // Allow requests from this origin
+    // origin: 'http://localhost:3000', // Allow requests from this origin
     credentials: true // Allow credentials (cookies)
   })
   );
