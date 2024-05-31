@@ -48,7 +48,7 @@ function Wishlist(): JSX.Element {
         fetchTeacherName(course.teacher_id);
       }
     });
-  }, [courses]);
+  }, [courses,fetchTeacherName]);
   useEffect(() => {
     const fetchWishlistCourses = async () => {
       try {

@@ -9,7 +9,7 @@ import TeachersDashboard from "../../components/teachersDashboard/TeachersDashbo
 import StudentDashboard from "../../components/studentDashboard/StudentDshboard";
 
 function Home() {
-  const { currentUser, loading } = useSelector((state: RootState) => state.user);
+  const { currentUser} = useSelector((state: RootState) => state.user);
   const userType: string =
     useSelector((state: RootState) => state.user.userType) || "student";
 

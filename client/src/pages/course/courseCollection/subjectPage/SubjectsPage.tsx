@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./SubjectsPage.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
@@ -17,7 +17,8 @@ function SubjectsPage(): JSX.Element {
   const courses: ICourse[] = useSelector(
     (state: RootState) => state.course.courses
   ) as unknown as ICourse[]; // No need for type assertion
-  const fetchTeacherName = async (teacherId: string) => {
+
+  const fetchTeacherName = useCallback(async (teacherId: string) => {
     if (teacherNames[teacherId]) {
       return; // Already fetched
     }
@@ -34,7 +35,7 @@ function SubjectsPage(): JSX.Element {
         [teacherId]: "Unknown",
       }));
     }
-  };
+  }, [teacherNames]);
 
   useEffect(() => {
     courses.forEach(course => {

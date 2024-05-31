@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; // Import useDispatch and useSelector
+import { useDispatch} from "react-redux"; // Import useDispatch and useSelector
 import {
   fetchCoursesStart,
   fetchCoursesSuccess,
 } from "../../redux/course/CourseSlice"; // Import the fetchCoursesStart action
-
 import "./ClassList.scss";
-import { RootState } from "../../redux/store";
 import api from '../../axios/api'
  import ClassStandard from "../../enum/ClassStandardEnums";
 

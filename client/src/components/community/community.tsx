@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo} from "react";
 import './Community.scss'
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
@@ -6,7 +6,6 @@ import { UserSliceState } from "../../redux/user/UserSlice";
 import Course from "../../interface/course/Course";
 import api from "../../axios/api";
 import ChatOnline from "../chatOnline/ChatOnline";
-import { Socket } from "socket.io-client";
 import IFriend from "../../interface/messanger/Friend";
 import IConversation from "../../interface/messanger/Conversation";
 
@@ -23,8 +22,8 @@ const Community: React.FC<CommunityProps> = ({ setCurrentChat }) => {
   const userType: string = useSelector(
     (state: RootState) => state.user.userType
   ) || "student";
-  const myLearningIds: string[] = currentUser?.mylearnings || [];
-  const [myLearnings, setMyLearnings] = useState<Course[]>([]);
+  const myLearningIds: string[] = useMemo(() => currentUser?.mylearnings || [], [currentUser?.mylearnings]);
+   const [myLearnings, setMyLearnings] = useState<Course[]>([]);
   const [selectedCourseStudents, setSelectedCourseStudents] = useState<
     IFriend[]
   >([]);

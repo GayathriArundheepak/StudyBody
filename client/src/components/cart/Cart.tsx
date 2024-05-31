@@ -24,7 +24,7 @@ function Cart(): JSX.Element {
     {}
   );
 
-  const fetchTeacherName = async (teacherId: string) => {
+    const fetchTeacherName = async (teacherId: string) => {
     if (teacherNames[teacherId]) {
       return; // Already fetched
     }

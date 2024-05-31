@@ -1,8 +1,8 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 
 import './Signup.scss';
-import { useNavigate ,useLocation} from 'react-router-dom';
-import  { AxiosResponse, AxiosError } from 'axios';
+import {useLocation} from 'react-router-dom';
+import  { AxiosResponse} from 'axios';
 import OTPTimer from '../../../components/otpTimer/OtpTimer';
 import api from '../../../axios/api'
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,7 +16,6 @@ interface FormData {
 }
 
 const ApprovalOtp: React.FC = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email')
