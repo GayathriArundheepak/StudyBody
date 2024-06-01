@@ -218,7 +218,6 @@ class authUsecase implements IAuthUsecaseInterface {
   async userSignIn(body: IStudentBody | ITeacherBody | IAdminBody) {
     try {
       let user;
-
       let userType;
       let isApproved;
       if (body.userType === "student") {

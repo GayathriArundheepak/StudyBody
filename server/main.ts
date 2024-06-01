@@ -1,4 +1,3 @@
-console.log('start')
 import connectedDB from "./config/db";
 import createServer from "./config/server";
 import authRouter from "./routes/auth.route";
@@ -27,7 +26,7 @@ app.use("/api/admin", adminRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/conversations", conversationRouter);
 app.use("/api/messages", messageRoute);
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`server is running on ${PORT}`), connectedDB();
 });
