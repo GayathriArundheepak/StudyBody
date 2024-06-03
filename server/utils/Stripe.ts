@@ -37,8 +37,10 @@ class StripePayments {
         line_items: lineItems,
         mode: "payment",
         // Add appropriate URLs for success and cancel redirects
-        success_url: `http://localhost:3000/success/${orderId}`,
-        cancel_url: "http://localhost:3000/cancel",
+        success_url: `https://studybuddy-react-host.s3.ap-south-1.amazonaws.com/success/${orderId}`,
+        cancel_url: "https://studybuddy-react-host.s3.ap-south-1.amazonaws.com/cancel",
+        // success_url: `http://localhost:3000/success/${orderId}`,
+        // cancel_url: "http://localhost:3000/cancel",
       });
 
       // Send the session URL to the client

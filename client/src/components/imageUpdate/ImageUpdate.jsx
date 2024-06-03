@@ -45,6 +45,7 @@ function ImageUpdate({ formData, setFormData }) {
       setImageUrl(imageUrl);
       setFormData({ ...formData, profilePic: imageUrl });
     } catch (error) {
+      console.log(error)
       console.error("Error uploading file:", error);
       alert("Error uploading file.");
     }

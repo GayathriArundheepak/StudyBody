@@ -74,11 +74,16 @@ try{
             const response= await this.authUsecase.userSignIn(req.body);
             console.log(response)
             const statusCode =response.success? HttpStatus.success:HttpStatus.Unauthorized
-            if(response.success){
-                
-                const  expiryDate:Date =new Date(Date.now() + 3600000)
-                res.cookie('access_token',response?.token,{httpOnly:true, expires: expiryDate })
-            }
+            if (response.success && response.token) {
+                const expiryDate = new Date(Date.now() + 3600000 * 24); // 1 day from now
+                res.cookie('access_token', response.token, {
+                  httpOnly: true,
+                  secure: true,
+                  sameSite: 'none', // Change "None" to "none"
+                  expires: expiryDate,
+                });
+              }
+              
             res.status(statusCode).send({
                 success:response.success,
                 message:response.message,

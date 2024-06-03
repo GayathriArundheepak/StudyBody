@@ -16,6 +16,7 @@ export const verifyToken =(req:Request,res:Response,next:NextFunction)=>{
   
     const token=req.cookies.access_token;
     console.log(token)
+    console.log(req.cookies)
     if(!token){
         return res.status(HttpStatus.Unauthorized).json({message:'You are not authenticated!'})
 

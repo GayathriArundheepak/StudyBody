@@ -242,7 +242,7 @@ class authUsecase implements IAuthUsecaseInterface {
         );
         if (matchPassword) {
           const token = await jwtAuthService.generateToken({ id: user._id });
-
+          console.log(token)
           return {
             success: true,
             message: "signIn successfully  ",
