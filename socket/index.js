@@ -9,8 +9,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        // origin: `http://localhost:${clientPort}`
-        origin: 'https://studybuddy-react-host.s3.ap-south-1.amazonaws.com'
+        origin: 'https://studdybuddy-learning.netlify.app'
+        
     }
 });
 
