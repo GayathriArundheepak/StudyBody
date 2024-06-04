@@ -1,0 +1,42 @@
+@import '../../config/color.scss';
+
+#about {
+  background-color: $background-color;
+  color: $dark-bg;
+  padding: 40px 0;
+  max-height: calc(100vh - 70px);
+  .container-fluid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .aboutUs-image {
+        width: 400px;
+        height: 300px;
+        border-radius: 10px;
+        margin-right: 20px;
+        margin-left: 20px;
+      }
+
+      .col-lg-6, .col-md-6, .col-12 {
+        h1 {
+          color: $primary-color;
+          margin-bottom: 20px;
+          font-size: 2.5rem;
+        }
+
+        p {
+          color: $dark-bg;
+          line-height: 1.6;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

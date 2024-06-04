@@ -1,0 +1,17 @@
+.upload-button {
+  cursor: pointer;
+  background-color: #d3d3d3;
+  /* Ash color */
+  color: #000;
+  /* Text color */
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #b0b0b0;
+  /* Darker ash color on hover */
+}

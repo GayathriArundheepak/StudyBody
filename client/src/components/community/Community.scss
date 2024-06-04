@@ -1,0 +1,47 @@
+// Import color variables from colors.scss
+@import "../../config/color.scss";
+
+.community {
+
+  color: $main-color;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .communityTitle {
+    color: $primary-color;
+    margin-bottom: 15px;
+  }
+
+  .courseList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+
+    .courseItem {
+  
+      padding: 10px;
+      border-radius: 3px;
+      cursor: pointer;
+
+      h3 {
+        color: $dark-color;
+        margin: 0;
+      }
+
+      &:hover {
+         background-color: $soft-color;
+      
+      }
+    }
+  }
+
+  .chatOnline {
+    margin-top: 0px;
+    background-color: $soft-bg;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  
+  }
+}

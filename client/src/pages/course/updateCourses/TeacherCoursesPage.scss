@@ -1,0 +1,83 @@
+/* TeacherCoursesPage.scss */
+@import "../../../config/color.scss";
+
+.teacher-courses-page {
+  width: 100%;
+  height: calc(100vh - 0px);
+  background: linear-gradient(
+    to bottom,
+    rgba(214, 207, 207, 0) 0%,
+    rgb(240, 236, 236) 100%
+  );
+  background-size: cover;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.teacher-middle-left {
+  flex: 9;
+  position: absolute;
+  top: 70px;
+  
+ 
+}
+
+.table {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  margin-left: 200px;
+  
+}
+
+.MuiTableContainer-root {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.MuiTableHead-root {
+  background-color: $primary-color;
+}
+
+.MuiTableCell-head {
+  background-color: $select-option-hover-background;
+  color: $main-color;
+  font-weight: bold;
+}
+
+.MuiTableCell-root {
+  border-bottom: 1px solid $soft-color;
+}
+
+.MuiTableRow-root:nth-child(even) {
+  background-color: $select-option-background;
+}
+
+.MuiTableRow-root:hover {
+  background-color: $select-option-hover-background;
+}
+
+.MuiTableCell-body {
+  color: $dark-color;
+}
+
+.MuiButton-root {
+  margin-right: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: $button-background;
+  color: $button-color;
+  cursor: pointer;
+}
+
+.MuiButton-root:hover {
+  background-color: darken($button-background, 10%);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}

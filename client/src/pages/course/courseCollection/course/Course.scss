@@ -1,0 +1,21 @@
+// Course.scss
+.course-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height of the viewport */
+}
+
+.topbar {
+  /* Add styles for Topbar */
+  position: sticky; /* Make the Topbar stick to the top */
+  top: 68px; /* Position it at the top of the viewport */
+  margin-bottom: 20px;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.content-wrapper {
+  flex-grow: 1; /* Allow the content to grow and occupy remaining space */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+}
