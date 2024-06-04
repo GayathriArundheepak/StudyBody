@@ -10,7 +10,7 @@ import Signin from "./pages/auth/signin/Signin";
 import Profile from "./pages/profile/Profile";
 import ApprovalOtp from "./pages/auth/signup/ApprovalOtp";
 import UserList from "./pages/admin/userManagement/UserList";
-import Home from "./";
+import Home from "./pages/home/Home";
 import SignOut from "./components/signOut/SignOut";
 import StudentRoute from "./components/privateRoute/StudentRoute";
 import TeacherRoute from "./components/privateRoute/TeacherRoute";
