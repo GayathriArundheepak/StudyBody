@@ -116,9 +116,10 @@ class authUsecase implements IAuthUsecaseInterface {
         port: 587,
         secure: false,
         requireTLS: true,
+        service: 'your-email-service-provider',
         auth: {
           user: "gayathri.a1804@gmail.com",
-          pass: "ugwonwxiwyvjqvnk",
+          pass: "efsi yosb bzok vypb",
         },
       });
 
