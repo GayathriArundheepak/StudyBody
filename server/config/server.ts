@@ -14,7 +14,8 @@ app.use(express.json());
      // Enable CORS middleware
 app.use(cors({
     
-     origin: 'https://studdybuddy-learning.netlify.app', // Allow requests from this origin
+    //  origin: 'https://studdybuddy-learning.netlify.app', // Allow requests from this origin
+     origin: 'http://localhost:3000', // Allow requests from this origin
     credentials: true // Allow credentials (cookies)
   })
   );
