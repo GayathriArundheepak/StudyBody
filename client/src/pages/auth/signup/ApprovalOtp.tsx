@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 
 import './Signup.scss';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import  { AxiosResponse} from 'axios';
 import OTPTimer from '../../../components/otpTimer/OtpTimer';
 import api from '../../../axios/api'
@@ -19,7 +19,7 @@ const ApprovalOtp: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email')
-
+  const navigate = useNavigate();
   // const [error, setError] = useState<string>('');
   const [otpExpired, setOtpExpired] = useState<boolean>(false);
   const [formData, setFormData] = useState<FormData>({
@@ -47,7 +47,7 @@ const ApprovalOtp: React.FC = () => {
         setOtpExpired(false);
         toast.success( response.data.message);
         ; 
-        
+        navigate('/signin')
       })
       .catch((error) => {
         console.error('Error:', error);
