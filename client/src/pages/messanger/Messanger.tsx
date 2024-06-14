@@ -35,7 +35,6 @@ const Messanger: React.FC = () => {
   useEffect(() => {
     // socket.current = io("ws:43.205.115.45:8900");
     socket.current = io("wss://messanger.studybuddy.world");
-
     socket.current.on("getMessage", (data) => {
       if (currentChat?.isGroup) {
         setArrivalMessage({
