@@ -35,9 +35,7 @@ const Signin: React.FC = () => {
     dispatch(signInStart());
     try {
       api
-        .post<ApiResponse>("/api/auth/login", formData, {
-          withCredentials: true,
-        })
+        .post<ApiResponse>("/api/auth/login", formData)
         .then((response: AxiosResponse<ApiResponse>) => {
           console.log("response", response.data);
           dispatch(signInSuccess(response.data));
