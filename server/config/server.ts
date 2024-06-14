@@ -11,24 +11,24 @@ app.use(express.json());
      // Use cookie-parser middleware
       app.use(cookieParser());
 
-     //  const corsOptions = {
-     //      origin: 'https://studdybuddy-learning.netlify.app',
-     //      methods: 'GET, POST, OPTIONS',
-     //      allowedHeaders: 'Authorization, Content-Type',
-     //      preflightContinue: false,
-     //      optionsSuccessStatus: 204
-     //    };
+      const corsOptions = {
+          origin: 'https://studdybuddy-learning.netlify.app',
+          methods: 'GET, POST, OPTIONS',
+          allowedHeaders: 'Authorization, Content-Type',
+          preflightContinue: false,
+          optionsSuccessStatus: 204
+        };
         
-     //    app.use(cors(corsOptions));
+        app.use(cors(corsOptions));
       
      // Enable CORS middleware
-app.use(cors({
+// app.use(cors({
     
-     origin: 'https://studdybuddy-learning.netlify.app', // Allow requests from this origin
+//      origin: 'https://studdybuddy-learning.netlify.app', // Allow requests from this origin
      
-    credentials: true // Allow credentials (cookies)
-  })
-  );
+//     credentials: true // Allow credentials (cookies)
+//   })
+//   );
     return app
 }
 export default createServer;
