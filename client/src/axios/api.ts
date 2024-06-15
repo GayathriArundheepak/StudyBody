@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create an Axios instance with default settings
 const instance = axios.create({
-     baseURL: 'https://localhost:8080', // Set your base URL here
+     baseURL: 'https://api.studybuddy.world', // Set your base URL here
   withCredentials: true, // Include cookies in requests
   headers: {
     'Content-Type': 'application/json', // Set default Content-Type header
