@@ -15,10 +15,7 @@ app.use(express.json());
 app.use(cors({
      origin: 'https://studdybuddy-learning.netlify.app', // Allow requests from this origin
     credentials: true ,// Allow credentials (cookies)
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    preflightContinue: false,
-  })
+})
   );
     return app
 }
