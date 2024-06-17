@@ -39,8 +39,7 @@ class StripePayments {
         // Add appropriate URLs for success and cancel redirects
         success_url: `https://studdybuddy-learning.netlify.app/success/${orderId}`,
         cancel_url: "https://studdybuddy-learning.netlify.app/cancel",
-        // success_url: `http://localhost:3000/success/${orderId}`,
-        // cancel_url: "http://localhost:3000/cancel",
+    
       });
 
       // Send the session URL to the client
